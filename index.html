@@ -304,9 +304,9 @@
         <div class="container">
             <h2 style="text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 50px;">PORTFOLIO</h2>
             <div class="category-tabs">
-                <button class="tab-btn active" onclick="setCategory('여캐')">여캐</button>
+                <button class="tab-btn active" onclick="setCategory('종합')">종합</button>
+                <button class="tab-btn" onclick="setCategory('여캐')">여캐</button>
                 <button class="tab-btn" onclick="setCategory('남캐')">남캐</button>
-                <button class="tab-btn" onclick="setCategory('월페이퍼')">월페이퍼</button>
             </div>
 
             <div class="slider-outer">
@@ -488,7 +488,7 @@ const csvGifDetailUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGxdhK
                             if (!portfolioData[cat]) portfolioData[cat] = [];
                             portfolioData[cat].push({ title: item['제목'], vid: item['아이디'], desc: item['설명'] });
                         });
-                        setCategory('여캐');
+                        setCategory('종합');
                     }
                 });
 
