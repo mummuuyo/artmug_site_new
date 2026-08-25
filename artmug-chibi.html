@@ -31,11 +31,6 @@
       --btn-bg: #ffffff;           
       --btn-text: #000000;         
       --accent-color: #58a6ff;
-      --toggle-bg: #2b2b2e;
-      --toggle-text: #ffffff;
-      --toggle-border: #444444;
-      --lang-btn-active: #ffffff;
-      --lang-text-active: #000000;
     }
 
     :root[data-theme="light"] {
@@ -48,11 +43,6 @@
       --btn-bg: #000000;           
       --btn-text: #ffffff;         
       --accent-color: #0066cc;
-      --toggle-bg: #e4e4e7;
-      --toggle-text: #000000;
-      --toggle-border: #d4d4d8;
-      --lang-btn-active: #ffffff;
-      --lang-text-active: #000000;
     }
 
     * {
@@ -69,62 +59,61 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 40px 20px;
+      padding: 20px 10px; /* 여백 축소 */
       transition: background-color 0.4s ease;
       line-height: 1.6;
     }
 
+    /* UI 전체 1.3배 확대 (폰트 크기 유지, 패딩/너비/간격 1.3배 적용) */
     .container {
       position: relative;
       background: var(--bg-container);
       width: 100%;
-      max-width: 680px;
-      padding: 40px;
-      border-radius: 16px;
+      max-width: 884px; /* 680px * 1.3 */
+      padding: 52px;    /* 40px * 1.3 */
+      border-radius: 21px; /* 16px * 1.3 */
       border: none;
       box-shadow: none;
       transition: all 0.4s ease;
     }
 
-    /* 상단 컨트롤러 (제거됨) */
-
     .header {
-      margin-bottom: 36px;
+      margin-bottom: 47px; /* 36px * 1.3 */
     }
 
     .header h1 {
-      font-size: 24px;
+      font-size: 24px; /* 폰트 유지 */
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 10px; /* 8px * 1.3 */
       color: var(--text-main);
       word-break: keep-all;
     }
 
     .header p {
-      font-size: 14px;
+      font-size: 14px; /* 폰트 유지 */
       font-weight: 300;
       color: var(--text-sub);
     }
 
     /* 섹션 제목 */
     .section-title {
-      font-size: 17px;
+      font-size: 17px; /* 폰트 유지 */
       font-weight: 700;
-      margin-top: 32px;
-      margin-bottom: 14px;
-      padding-bottom: 6px;
+      margin-top: 42px; /* 32px * 1.3 */
+      margin-bottom: 18px; /* 14px * 1.3 */
+      padding-bottom: 8px; /* 6px * 1.3 */
       border-bottom: 2px solid var(--border-color);
       color: var(--text-main);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px; /* 8px * 1.3 */
     }
 
     /* 🎬 포트폴리오 멀티 슬라이더 */
     .portfolio-slider-wrapper {
       position: relative;
       width: 100%;
-      margin-bottom: 24px;
+      margin-bottom: 31px; /* 24px * 1.3 */
     }
 
     .portfolio-slider-container {
@@ -141,20 +130,20 @@
 
     .slider-track {
       display: flex;
-      gap: 16px;
-      padding: 4px 0;
+      gap: 21px; /* 16px * 1.3 */
+      padding: 5px 0;
     }
 
     .slide-item {
       flex: 0 0 42%;
-      min-width: 220px;
+      min-width: 286px; /* 220px * 1.3 */
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
+      border-radius: 16px; /* 12px * 1.3 */
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 5px 16px rgba(0,0,0,0.08);
     }
 
     @media (max-width: 520px) {
@@ -180,9 +169,9 @@
     }
 
     .vtuber-name {
-      padding: 12px;
+      padding: 16px; /* 12px * 1.3 */
       color: var(--text-main);
-      font-size: 13px;
+      font-size: 13px; /* 폰트 유지 */
       font-weight: 600;
       text-align: center;
       border-top: 1px solid var(--border-color);
@@ -192,7 +181,7 @@
 
     .loading-msg {
       width: 100%;
-      padding: 30px;
+      padding: 39px; /* 30px * 1.3 */
       text-align: center;
       color: var(--text-sub);
       font-size: 14px;
@@ -206,8 +195,8 @@
       background: rgba(0, 0, 0, 0.7);
       color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      width: 36px;
-      height: 36px;
+      width: 47px;  /* 36px * 1.3 */
+      height: 47px; /* 36px * 1.3 */
       border-radius: 50%;
       font-size: 16px;
       cursor: pointer;
@@ -224,30 +213,30 @@
       transform: translateY(-50%) scale(1.1);
     }
 
-    .prev-btn { left: -18px; }
-    .next-btn { right: -18px; }
+    .prev-btn { left: -23px; } /* -18px * 1.3 */
+    .next-btn { right: -23px; }
 
     /* 샘플 갤러리 3x3 관련 스타일 */
     .gallery-section {
-      margin-top: 36px;
-      margin-bottom: 24px;
+      margin-top: 47px;
+      margin-bottom: 31px;
     }
 
     .gallery-tab-group {
       display: flex;
       justify-content: center;
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 10px; /* 8px * 1.3 */
+      margin-bottom: 21px; /* 16px * 1.3 */
     }
 
     .tab-btn {
       flex: 1;
-      max-width: 120px;
-      padding: 8px 12px;
+      max-width: 156px; /* 120px * 1.3 */
+      padding: 10px 16px; /* 8px/12px * 1.3 */
       background-color: var(--bg-card);
       color: var(--text-sub);
       border: 1px solid var(--border-color);
-      border-radius: 20px;
+      border-radius: 26px; /* 20px * 1.3 */
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
@@ -264,18 +253,18 @@
       background-color: var(--btn-bg);
       color: var(--btn-text);
       border-color: var(--btn-bg);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
     }
 
     .grid-3x3-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 16px; /* 12px * 1.3 */
     }
 
     @media (max-width: 480px) {
       .grid-3x3-container {
-        gap: 8px;
+        gap: 10px;
       }
     }
 
@@ -284,16 +273,16 @@
       flex-direction: column;
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 5px 16px rgba(0, 0, 0, 0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .grid-card-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
     }
 
     .grid-card-img-wrap {
@@ -312,7 +301,7 @@
     }
 
     .grid-card-caption {
-      padding: 10px 8px;
+      padding: 13px 10px; /* 10px/8px * 1.3 */
       color: var(--text-main);
       font-size: 12px;
       font-weight: 600;
@@ -349,47 +338,47 @@
     .img-modal-content {
       max-width: 90%;
       max-height: 85vh;
-      border-radius: 8px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      border-radius: 10px;
+      box-shadow: 0 10px 42px rgba(0,0,0,0.5);
       object-fit: contain;
     }
 
     /* 리스트 및 일반 스타일 */
     ul { list-style: none; padding-left: 0; }
-    ul li { position: relative; padding-left: 18px; margin-bottom: 8px; font-size: 14px; font-weight: 400; color: var(--text-main); }
-    ul li::before { content: "•"; position: absolute; left: 4px; color: var(--text-sub); font-weight: bold; }
-    ul.sub-list { margin-top: 6px; margin-bottom: 6px; padding-left: 12px; }
+    ul li { position: relative; padding-left: 23px; margin-bottom: 10px; font-size: 14px; font-weight: 400; color: var(--text-main); }
+    ul li::before { content: "•"; position: absolute; left: 5px; color: var(--text-sub); font-weight: bold; }
+    ul.sub-list { margin-top: 8px; margin-bottom: 8px; padding-left: 16px; }
     ul.sub-list li::before { content: "-"; color: var(--text-sub); }
 
-    .highlight-text { font-size: 13px; font-weight: 600; color: var(--text-main); margin-top: 4px; margin-bottom: 8px; }
-    .info-box { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px 20px; margin-bottom: 16px; }
+    .highlight-text { font-size: 13px; font-weight: 600; color: var(--text-main); margin-top: 5px; margin-bottom: 10px; }
+    .info-box { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 21px 26px; margin-bottom: 21px; }
 
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 21px; }
     @media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
-    .grid-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; }
-    .grid-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); }
+    .grid-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 13px; padding: 21px; }
+    .grid-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 13px; color: var(--text-main); }
 
-    .price-list { display: flex; flex-direction: column; gap: 10px; }
-    .price-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; font-size: 14px; }
+    .price-list { display: flex; flex-direction: column; gap: 13px; }
+    .price-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 21px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 13px; font-size: 14px; }
     .price-item .type { font-weight: 500; }
     .price-item .amount { font-weight: 700; font-size: 15px; }
 
-    /* 문의하기 버튼 스타일 (아트머그 규격 팝업 연동) */
+    /* 아트머그 문의하기 버튼 스타일 (1.3배 확대) */
     .btn_qna {
       display: block;
       width: 100%;
       text-align: center;
-      padding: 16px;
+      padding: 21px; /* 16px * 1.3 */
       background-color: var(--btn-bg);
       color: var(--btn-text);
       text-decoration: none;
-      border-radius: 10px;
+      border-radius: 13px; /* 10px * 1.3 */
       font-size: 16px;
       font-weight: 700;
       transition: all 0.3s ease;
-      margin-top: 24px;
-      margin-bottom: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin-top: 31px; /* 24px * 1.3 */
+      margin-bottom: 18px; /* 14px * 1.3 */
+      box-shadow: 0 5px 16px rgba(0,0,0,0.15);
       cursor: pointer;
     }
     .btn_qna:hover {
@@ -482,8 +471,8 @@
 
     <!-- 3. 사용 범위 -->
     <div class="section-title">🔒 사용 범위</div>
-    <div class="info-box" style="margin-bottom: 12px;">
-      <p style="font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--text-sub);">[공통 종합 규정]</p>
+    <div class="info-box" style="margin-bottom: 16px;">
+      <p style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--text-sub);">[공통 종합 규정]</p>
       <ul>
         <li>타인에게 양도 불가</li>
         <li>포트폴리오 비공개 불가</li>
@@ -526,8 +515,8 @@
       </div>
     </div>
 
-    <!-- 아트머그 문의하기 팝업 버튼 -->
-    <p class="btn_qna" onclick="pLightBox.show('php/qna_write.php?cate=110000000000&amp;number=60682','iframe_w','1080','500','문의하기','0'); qnaAlert() ;return false;">문의하기</p>
+    <!-- 아트머그 문의하기 팝업 버튼 (작동 코드 정비) -->
+    <div class="btn_qna" onclick="if(typeof pLightBox !== 'undefined') { pLightBox.show('php/qna_write.php?cate=110000000000&number=60682','iframe_w','1080','500','문의하기','0'); if(typeof qnaAlert === 'function') qnaAlert(); } else { alert('아트머그 환경에서 정상 작동하는 버튼입니다.'); } return false;">문의하기</div>
   </div>
 
   <!-- 이미지 확대 모달 -->
@@ -550,7 +539,7 @@
     function scrollSlider(direction) {
       const slideItem = container.querySelector('.slide-item');
       if (!slideItem) return;
-      const scrollAmount = slideItem.clientWidth + 16;
+      const scrollAmount = slideItem.clientWidth + 21; /* 16 * 1.3 */
       container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
     }
 
