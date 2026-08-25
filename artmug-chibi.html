@@ -559,13 +559,13 @@
     }
 
     /* 아트머그 부모 창으로 문의 팝업 요청 전송 */
-    function requestQnaPopup() {
-      if (window.parent && window.parent !== window) {
-        window.parent.postMessage({ type: 'open_qna' }, '*');
-      } else {
-        alert('아트머그 환경에서만 정상 작동하는 버튼입니다.');
-      }
-    }
+function requestQnaPopup() {
+  try {
+    window.parent.postMessage({ type: 'open_qna' }, '*');
+  } catch (e) {
+    window.top.postMessage({ type: 'open_qna' }, '*');
+  }
+}
 
     /* 포트폴리오 로딩 */
     async function loadPortfolioFromSheet() {
