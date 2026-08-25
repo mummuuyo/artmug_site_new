@@ -465,6 +465,19 @@ ${additional}`;
       loadTabGallery(0);
       calculateTotalEstimate();
     });
+    function sendHeightToParent() {
+      const height = document.body.scrollHeight;
+      try {
+        window.parent.postMessage({ height: height }, '*');
+      } catch (e) {}
+    }
+
+    window.addEventListener('load', sendHeightToParent);
+    window.addEventListener('resize', sendHeightToParent);
+    
+    // 내용이 로딩되거나 변할 때도 높이 체크
+    setTimeout(sendHeightToParent, 500);
+    setTimeout(sendHeightToParent, 1500);
   </script>
 </body>
 </html>
