@@ -283,7 +283,7 @@
 
     .grid-card-item:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.14);
     }
 
     .grid-card-img-wrap {
@@ -715,7 +715,7 @@
       return directUrl;
     }
 
-function handleQnaClick() {
+    function handleQnaClick() {
       const nickname = document.getElementById('nickname').value;
       const usage = document.getElementById('usage').value;
       const concept = document.getElementById('concept').value;
@@ -747,7 +747,6 @@ ${concept.replace(/\n/g, '<br>')}<br><br>
 - 추가 파츠 및 요청사항:<br>
 ${additional.replace(/\n/g, '<br>')}`;
 
-      // 알림창 없이 부모 창으로 데이터 전송
       try {
         window.parent.postMessage({ type: 'open_qna', formText: formattedHtml }, '*');
       } catch (e) {
