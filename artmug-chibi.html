@@ -744,8 +744,7 @@
       return directUrl;
     }
 
-    // 문의하기 버튼 클릭 시 양식 클립보드 복사 및 아트머그 팝업창 호출 트리거
-// 문의하기 버튼 클릭 시 양식 클립보드 복사 및 아트머그 팝업창 호출 트리거
+// 문의하기 버튼 클릭 시 양식 데이터를 조합해 부모 창으로 전달하는 함수
     function handleQnaClick() {
       // 1. 입력된 폼 데이터 가져오기
       const nickname = document.getElementById('nickname').value;
@@ -770,47 +769,23 @@
       const optionsStr = optionsText.length > 0 ? optionsText.join(', ') : '없음';
       const finalEstimate = document.getElementById('totalEstimateText').textContent;
 
-      // 4. 복사될 텍스트 포맷팅 생성
+      // 4. 문의창에 들어갈 포맷팅 텍스트 생성 (줄바꿈 문자를 <br> 또는 일반 텍스트로 처리)
       const formattedText = 
-`[SD 고정틀 신청 양식]
-- 닉네임 (모델명): ${nickname}
-- 사용 용도: ${usage}
-- 선택된 추가 옵션: ${optionsStr}
-- 예상 총 견적: ${finalEstimate}
-- 캐릭터 컨셉:
-${concept}
+`[SD 고정틀 신청 양식]<br>
+- 닉네임 (모델명): ${nickname}<br>
+- 사용 용도: ${usage}<br>
+- 선택된 추가 옵션: ${optionsStr}<br>
+- 예상 총 견적: ${finalEstimate}<br>
+- 캐릭터 컨셉:<br>
+${concept.replace(/\n/g, '<br>')}<br><br>
+- 추가 파츠 및 요청사항:<br>
+${additional.replace(/\n/g, '<br>')}`;
 
-- 추가 파츠 및 요청사항:
-${additional}`;
-
-      // 5. iframe 환경에서도 차단되지 않는 구형(Fallback) 클립보드 복사 방식 적용
-      const textarea = document.createElement('textarea');
-      textarea.value = formattedText;
-      textarea.style.position = 'fixed';  // 화면 스크롤 방지
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.focus();
-      textarea.select();
-
+      // 5. 알림창 없이 부모 창(아트머그)으로 데이터와 함께 팝업 요청 전송
       try {
-        const successful = document.execCommand('copy');
-        document.body.removeChild(textarea);
-
-        if (successful) {
-          alert('신청서 양식이 클립보드에 복사되었습니다!\n잠시 후 열리는 문의 창에 붙여넣기(Ctrl+V) 해주세요.');
-          
-          // 아트머그 부모 창으로 팝업 열기 신호 전송
-          try {
-            window.parent.postMessage({ type: 'open_qna' }, '*');
-          } catch (e) {
-            window.top.postMessage({ type: 'open_qna' }, '*');
-          }
-        } else {
-          alert('복사에 실패했습니다. 다시 시도해 주세요.');
-        }
-      } catch (err) {
-        document.body.removeChild(textarea);
-        alert('브라우저 환경에서 복사 기능을 지원하지 않습니다.');
+        window.parent.postMessage({ type: 'open_qna', formText: formattedText }, '*');
+      } catch (e) {
+        window.top.postMessage({ type: 'open_qna', formText: formattedText }, '*');
       }
     }
 
