@@ -736,45 +736,22 @@ function handleQnaClick() {
       const optionsStr = optionsText.length > 0 ? optionsText.join(', ') : '없음';
       const finalEstimate = document.getElementById('totalEstimateText').textContent;
 
-      const formattedText = 
-`[SD 고정틀 신청 양식]
-- 닉네임 (모델명): ${nickname}
-- 사용 용도: ${usage}
-- 선택된 추가 옵션: ${optionsStr}
-- 예상 총 견적: ${finalEstimate}
-- 캐릭터 컨셉:
-${concept}
+      const formattedHtml = 
+`[SD 고정틀 신청 양식]<br>
+- 닉네임 (모델명): ${nickname}<br>
+- 사용 용도: ${usage}<br>
+- 선택된 추가 옵션: ${optionsStr}<br>
+- 예상 총 견적: ${finalEstimate}<br>
+- 캐릭터 컨셉:<br>
+${concept.replace(/\n/g, '<br>')}<br><br>
+- 추가 파츠 및 요청사항:<br>
+${additional.replace(/\n/g, '<br>')}`;
 
-- 추가 파츠 및 요청사항:
-${additional}`;
-
-      // iframe 및 최신 브라우저 보안을 모두 우회하는 확실한 클립보드 복사 방식
-      const textarea = document.createElement('textarea');
-      textarea.value = formattedText;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.focus();
-      textarea.select();
-
+      // 알림창 없이 부모 창으로 데이터 전송
       try {
-        const successful = document.execCommand('copy');
-        document.body.removeChild(textarea);
-
-        if (successful) {
-          alert('신청서 양식이 클립보드에 복사되었습니다!\n잠시 후 열리는 문의 창에 붙여넣기(Ctrl+V) 해주세요.');
-          
-          try {
-            window.parent.postMessage({ type: 'open_qna' }, '*');
-          } catch (e) {
-            window.top.postMessage({ type: 'open_qna' }, '*');
-          }
-        } else {
-          alert('복사에 실패했습니다. 다시 시도해 주세요.');
-        }
-      } catch (err) {
-        document.body.removeChild(textarea);
-        alert('복사 기능을 지원하지 않는 브라우저입니다.');
+        window.parent.postMessage({ type: 'open_qna', formText: formattedHtml }, '*');
+      } catch (e) {
+        window.top.postMessage({ type: 'open_qna', formText: formattedHtml }, '*');
       }
     }
 
