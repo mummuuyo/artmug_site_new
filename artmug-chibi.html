@@ -70,7 +70,6 @@
       line-height: 1.6;
     }
 
-    /* 전체 UI 1.3배 확대 레이아웃 컨테이너 */
     .container {
       position: relative;
       background: var(--bg-container);
@@ -114,7 +113,6 @@
       gap: 10px; 
     }
 
-    /* 포트폴리오 슬라이더 스타일 */
     .portfolio-slider-wrapper {
       position: relative;
       width: 100%;
@@ -220,7 +218,6 @@
     .prev-btn { left: -23px; } 
     .next-btn { right: -23px; }
 
-    /* 갤러리 탭 및 그리드 스타일 */
     .gallery-section {
       margin-top: 47px;
       margin-bottom: 31px;
@@ -286,7 +283,7 @@
 
     .grid-card-item:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.14);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
     }
 
     .grid-card-img-wrap {
@@ -366,7 +363,6 @@
     .price-item .type { font-weight: 500; }
     .price-item .amount { font-weight: 700; font-size: 15px; }
 
-    /* 신청 양식 폼 박스 디자인 스타일 */
     .form-box {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -383,7 +379,6 @@
     .form-control:focus { border-color: var(--text-main); }
     textarea.form-control { min-height: 110px; resize: vertical; }
 
-    /* 체크박스 옵션 리스트 스타일 */
     .checkbox-group {
       display: flex;
       flex-direction: column;
@@ -411,7 +406,6 @@
       cursor: pointer;
     }
 
-    /* 실시간 견적 표시 박스 스타일 */
     .estimate-box {
       background-color: var(--bg-input);
       border: 1px solid var(--border-color);
@@ -434,7 +428,6 @@
       color: var(--accent-color);
     }
 
-    /* 아트머그 문의하기 버튼 디자인 */
     .btn_qna {
       display: block;
       width: 100%;
@@ -461,13 +454,11 @@
 <body>
 
   <div class="container">
-    <!-- 헤더 영역 -->
     <div class="header">
       <h1>[MUMMU] SD 고정틀 커미션 안내</h1>
       <p>신청 전 아래 안내사항 및 작업 범위를 반드시 확인해 주세요.</p>
     </div>
 
-    <!-- 포트폴리오 슬라이더 -->
     <div class="section-title">🎬 포트폴리오</div>
     <div class="portfolio-slider-wrapper">
       <button class="slider-btn prev-btn" onclick="scrollSlider(-1)">&#10094;</button>
@@ -479,7 +470,6 @@
       <button class="slider-btn next-btn" onclick="scrollSlider(1)">&#10095;</button>
     </div>
 
-    <!-- 갤러리 섹션 -->
     <div class="gallery-section">
       <div class="section-title">🖼️ 표정</div>
       <div class="gallery-tab-group">
@@ -495,7 +485,6 @@
       </div>
     </div>
 
-    <!-- 안내사항 -->
     <div class="section-title">📌 안내사항</div>
     <div class="info-box">
       <ul>
@@ -519,7 +508,6 @@
       </ul>
     </div>
 
-    <!-- 고정틀 범위 -->
     <div class="section-title">🎨 고정틀 범위</div>
     <div class="grid-2">
       <div class="grid-card">
@@ -541,7 +529,6 @@
       </div>
     </div>
 
-    <!-- 사용 범위 -->
     <div class="section-title">🔒 사용 범위</div>
     <div class="info-box" style="margin-bottom: 16px;">
       <p style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--text-sub);">[공통 종합 규정]</p>
@@ -566,7 +553,6 @@
       </div>
     </div>
 
-    <!-- 금액 안내 -->
     <div class="section-title">💰 금액 안내 (샘플가)</div>
     <div class="price-list">
       <ul>
@@ -587,19 +573,16 @@
       </div>
     </div>
 
-    <!-- 신청 양식 및 실시간 견적 계산기 폼 영역 -->
     <div class="form-box">
       <div class="section-title" style="margin-top: 0; border-bottom: none; padding-bottom: 0;">📝 신청 양식 작성</div>
       <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 20px;">내용을 작성하고 하단 문의하기를 누르면 양식이 자동 복사됩니다.</p>
       
       <form id="applicationForm" onsubmit="return false;">
-        <!-- 닉네임 입력 -->
         <div class="form-group">
           <label for="nickname">닉네임 (모델명)</label>
           <input type="text" id="nickname" name="nickname" class="form-control" placeholder="예: 멈무" required>
         </div>
 
-        <!-- 사용 용도 선택 드롭다운 -->
         <div class="form-group">
           <label for="usage">사용 용도 선택</label>
           <select id="usage" name="usage" class="form-control" onchange="calculateTotalEstimate()" required>
@@ -609,7 +592,6 @@
           </select>
         </div>
 
-        <!-- 추가 옵션 체크박스 영역 -->
         <div class="form-group">
           <label>추가 옵션 선택</label>
           <div class="checkbox-group">
@@ -632,19 +614,16 @@
           </div>
         </div>
 
-        <!-- 캐릭터 컨셉 -->
         <div class="form-group">
           <label for="concept">캐릭터 컨셉</label>
           <textarea id="concept" name="concept" class="form-control" placeholder="내용 작성" required></textarea>
         </div>
 
-        <!-- 추가 파츠 및 요청사항 -->
         <div class="form-group">
           <label for="additional">추가 파츠 및 요청사항</label>
           <textarea id="additional" name="additional" class="form-control" placeholder="내용 작성"></textarea>
         </div>
 
-        <!-- 실시간 견적 표시 영역 -->
         <div class="estimate-box">
           <div class="estimate-title">예상 총 견적 금액</div>
           <div class="estimate-amount" id="totalEstimateText">70,000원</div>
@@ -652,17 +631,14 @@
       </form>
     </div>
 
-    <!-- 문의하기 버튼 (클릭 시 자동 복사 및 아트머그 팝업 통신 수행) -->
     <div class="btn_qna" onclick="handleQnaClick()">문의하기</div>
   </div>
 
-  <!-- 이미지 확대 모달 -->
   <div class="img-modal-overlay" id="imgModal" onclick="closeImageModal()">
     <img src="" id="modalImg" class="img-modal-content" alt="샘플 원본 보기">
   </div>
 
   <script>
-    // 구글 스프레드시트 CSV 연동 주소 설정
     const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfRpUU5EISjVKuVP-p0x1tTmiCTek-1Uhr3q18Y4tEVotijnrEHbXJENLPcBQBqtKvVU0r92oJNjuL/pub?gid=0&single=true&output=csv';
     const CURRENT_LANG = 'ko';
 
@@ -672,7 +648,6 @@
       { name: '포즈', url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfRpUU5EISjVKuVP-p0x1tTmiCTek-1Uhr3q18Y4tEVotijnrEHbXJENLPcBQBqtKvVU0r92oJNjuL/pub?gid=1561439969&single=true&output=csv' }
     ];
 
-    // 실시간 총 견적 계산 및 저작권 옵션 제어 함수
     function calculateTotalEstimate() {
       const usageSelect = document.getElementById('usage');
       const selectedUsage = usageSelect.value;
@@ -695,7 +670,6 @@
       const copyrightWrapper = document.getElementById('copyrightWrapper');
       const copyrightLabelText = document.getElementById('copyrightLabelText');
 
-      // 저작권 구매 옵션은 상업용 선택 시에만 활성화 처리
       if (selectedUsage !== '상업용') {
         copyrightCheckbox.checked = false;
         copyrightCheckbox.disabled = true;
@@ -716,7 +690,6 @@
       return finalTotal;
     }
 
-    // 포트폴리오 슬라이더 스크롤 제어
     const container = document.getElementById('sliderContainer');
     function scrollSlider(direction) {
       const slideItem = container.querySelector('.slide-item');
@@ -725,13 +698,11 @@
       container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
     }
 
-    // CSV 파싱 함수
     function parseCSV(text) {
       const lines = text.trim().split(/\r?\n/);
       return lines.map(line => line.split(',').map(cell => cell.trim().replace(/^"(.*)"$/, '$1')));
     }
 
-    // 드롭박스 링크 raw=1 변환 규칙 적용
     function convertDropboxUrl(url) {
       if (!url) return '';
       let directUrl = url.trim();
@@ -744,7 +715,6 @@
       return directUrl;
     }
 
-// 문의하기 버튼 클릭 시 양식을 직접 부모 창으로 전달하는 함수
     function handleQnaClick() {
       const nickname = document.getElementById('nickname').value;
       const usage = document.getElementById('usage').value;
@@ -766,7 +736,6 @@
       const optionsStr = optionsText.length > 0 ? optionsText.join(', ') : '없음';
       const finalEstimate = document.getElementById('totalEstimateText').textContent;
 
-      // HTML 형식으로 줄바꿈 포함 생성
       const formattedHtml = 
 `[SD 고정틀 신청 양식]<br>
 - 닉네임 (모델명): ${nickname}<br>
@@ -778,16 +747,13 @@ ${concept.replace(/\n/g, '<br>')}<br><br>
 - 추가 파츠 및 요청사항:<br>
 ${additional.replace(/\n/g, '<br>')}`;
 
-      // 부모 창으로 텍스트 데이터 전송
       try {
         window.parent.postMessage({ type: 'open_qna', formText: formattedHtml }, '*');
       } catch (e) {
         window.top.postMessage({ type: 'open_qna', formText: formattedHtml }, '*');
       }
     }
-    }
 
-    // 포트폴리오 데이터 불러오기
     async function loadPortfolioFromSheet() {
       const sliderTrack = document.getElementById('sliderTrack');
       try {
@@ -828,8 +794,8 @@ ${additional.replace(/\n/g, '<br>')}`;
         console.error('포트폴리오 오류:', error);
         sliderTrack.innerHTML = `<div class="loading-msg">⚠️ 포트폴리오를 불러오지 못했습니다.</div>`;
       }
+    }
 
-    // 샘플 갤러리 탭별 데이터 로딩
     async function loadTabGallery(tabIndex) {
       const galleryContainer = document.getElementById('mainGalleryGrid');
       galleryContainer.innerHTML = `<div class="loading-msg" style="grid-column: span 3; text-align: center; padding: 20px;">불러오는 중... 🖼️</div>`;
@@ -903,7 +869,6 @@ ${additional.replace(/\n/g, '<br>')}`;
       document.getElementById('imgModal').classList.remove('active');
     }
 
-    // 페이지 로드 시 초기화 함수 실행
     window.addEventListener('DOMContentLoaded', () => {
       loadPortfolioFromSheet();
       loadTabGallery(0);
