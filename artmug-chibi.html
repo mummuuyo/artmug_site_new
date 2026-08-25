@@ -360,20 +360,40 @@ function handleQnaClick() {
       const finalEstimate = document.getElementById('totalEstimateText').textContent;
 
       const formattedText = 
-`[SD 고정틀 신청 양식]<br>
-- 닉네임 (모델명): ${nickname}<br>
-- 사용 용도: ${usage}<br>
-- 선택된 추가 옵션: ${optionsStr}<br>
-- 예상 총 견적: ${finalEstimate}<br>
-- 캐릭터 컨셉:<br>
-${concept.replace(/\n/g, '<br>')}<br><br>
-- 추가 파츠 및 요청사항:<br>
-${additional.replace(/\n/g, '<br>')}`;
+`[SD 고정틀 신청 양식]
+- 닉네임 (모델명): ${nickname}
+- 사용 용도: ${usage}
+- 선택된 추가 옵션: ${optionsStr}
+- 예상 총 견적: ${finalEstimate}
+- 캐릭터 컨셉:
+${concept}
+
+- 추가 파츠 및 요청사항:
+${additional}`;
+
+      // 클립보드에 조용히 복사
+      const textarea = document.createElement('textarea');
+      textarea.value = formattedText;
+      textarea.style.position = 'fixed';
+      textarea.style.top = '0';
+      textarea.style.left = '0';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
 
       try {
-        window.parent.postMessage({ type: 'open_qna', formText: formattedText }, '*');
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      } catch (err) {
+        document.body.removeChild(textarea);
+      }
+
+      // 팝업창 호출
+      try {
+        window.parent.postMessage({ type: 'open_qna' }, '*');
       } catch (e) {
-        window.top.postMessage({ type: 'open_qna', formText: formattedText }, '*');
+        window.top.postMessage({ type: 'open_qna' }, '*');
       }
     }
 
