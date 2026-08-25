@@ -744,8 +744,7 @@
       return directUrl;
     }
 
-// 문의하기 버튼 클릭 시 양식 데이터를 조합해 부모 창으로 전달하는 함수
-    // 문의하기 버튼 클릭 시 양식을 클립보드에 담고 부모 창에 붙여넣기 명령을 내리는 함수
+// 문의하기 버튼 클릭 시 양식을 직접 부모 창으로 전달하는 함수
     function handleQnaClick() {
       const nickname = document.getElementById('nickname').value;
       const usage = document.getElementById('usage').value;
@@ -767,28 +766,25 @@
       const optionsStr = optionsText.length > 0 ? optionsText.join(', ') : '없음';
       const finalEstimate = document.getElementById('totalEstimateText').textContent;
 
-      const formattedText = 
-`[SD 고정틀 신청 양식]
-- 닉네임 (모델명): ${nickname}
-- 사용 용도: ${usage}
-- 선택된 추가 옵션: ${optionsStr}
-- 예상 총 견적: ${finalEstimate}
-- 캐릭터 컨셉:
-${concept}
+      // HTML 형식으로 줄바꿈 포함 생성
+      const formattedHtml = 
+`[SD 고정틀 신청 양식]<br>
+- 닉네임 (모델명): ${nickname}<br>
+- 사용 용도: ${usage}<br>
+- 선택된 추가 옵션: ${optionsStr}<br>
+- 예상 총 견적: ${finalEstimate}<br>
+- 캐릭터 컨셉:<br>
+${concept.replace(/\n/g, '<br>')}<br><br>
+- 추가 파츠 및 요청사항:<br>
+${additional.replace(/\n/g, '<br>')}`;
 
-- 추가 파츠 및 요청사항:
-${additional}`;
-
-      // 클립보드에 텍스트 복사 후 부모 창으로 전달
-      navigator.clipboard.writeText(formattedText).then(() => {
-        try {
-          window.parent.postMessage({ type: 'open_qna' }, '*');
-        } catch (e) {
-          window.top.postMessage({ type: 'open_qna' }, '*');
-        }
-      }).catch(err => {
-        alert('클립보드 복사 권한을 허용해 주세요.');
-      });
+      // 부모 창으로 텍스트 데이터 전송
+      try {
+        window.parent.postMessage({ type: 'open_qna', formText: formattedHtml }, '*');
+      } catch (e) {
+        window.top.postMessage({ type: 'open_qna', formText: formattedHtml }, '*');
+      }
+    }
     }
 
     // 포트폴리오 데이터 불러오기
