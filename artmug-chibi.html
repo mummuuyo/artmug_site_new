@@ -290,7 +290,7 @@
       { name: '포즈', url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfRpUU5EISjVKuVP-p0x1tTmiCTek-1Uhr3q18Y4tEVotijnrEHbXJENLPcBQBqtKvVU0r92oJNjuL/pub?gid=1561439969&single=true&output=csv' }
     ];
 
-    function calculateTotalEstimate() {
+function calculateTotalEstimate() {
       const usageSelect = document.getElementById('usage');
       const selectedUsage = usageSelect.value;
       let basePrice = selectedUsage === '방송용' ? 120000 : (selectedUsage === '상업용' ? 360000 : 70000);
@@ -312,8 +312,12 @@
         copyrightWrapper.style.opacity = '1';
         copyrightLabelText.style.color = 'var(--text-main)';
       }
-      let finalTotal = (selectedUsage === '상업용' && copyrightCheckbox.checked) ? subTotal * 2 : subTotal;
-      document.getElementById('totalEstimateText').textContent = finalTotal.toLocaleString() + '원';
+      let rawTotal = (selectedUsage === '상업용' && copyrightCheckbox.checked) ? subTotal * 2 : subTotal;
+      
+      // 모든 최종 금액에 사이트 추가 수수료 10% 반영
+      let finalTotal = Math.round(rawTotal * 1.1);
+
+      document.getElementById('totalEstimateText').textContent = finalTotal.toLocaleString() + '원 (사이트 수수료 10% 포함)';
       return finalTotal;
     }
 
