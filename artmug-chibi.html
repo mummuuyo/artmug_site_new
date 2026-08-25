@@ -338,7 +338,7 @@
       return directUrl;
     }
 
-    function handleQnaClick() {
+function handleQnaClick() {
       const nickname = document.getElementById('nickname').value;
       const usage = document.getElementById('usage').value;
       const concept = document.getElementById('concept').value;
@@ -371,7 +371,7 @@ ${concept}
 - 추가 파츠 및 요청사항:
 ${additional}`;
 
-      // 클립보드 복사 후 알림 없이 부모 창에 팝업 요청 전달
+      // 클립보드에 복사 후 부모 창에 팝업 요청 전달
       const textarea = document.createElement('textarea');
       textarea.value = formattedText;
       textarea.style.position = 'fixed';
