@@ -371,22 +371,31 @@ ${concept}
 - 추가 파츠 및 요청사항:
 ${additional}`;
 
-      // 클립보드에 복사 후 부모 창에 팝업 요청 전달
+      // 100% 확실하게 클립보드에 텍스트를 꽂아넣는 호환성 최고 방식
       const textarea = document.createElement('textarea');
       textarea.value = formattedText;
       textarea.style.position = 'fixed';
+      textarea.style.top = '0';
+      textarea.style.left = '0';
       textarea.style.opacity = '0';
       document.body.appendChild(textarea);
       textarea.focus();
       textarea.select();
 
       try {
-        document.execCommand('copy');
+        const successful = document.execCommand('copy');
         document.body.removeChild(textarea);
-        window.parent.postMessage({ type: 'open_qna' }, '*');
+
+        if (successful) {
+          // 복사가 성공하면 안내 팝업과 함께 아트머그 문의창 호출
+          alert('신청서 양식이 클립보드에 복사되었습니다!\n팝업창 에디터 안을 클릭하고 붙여넣기(Ctrl + V)를 해주세요.');
+          window.parent.postMessage({ type: 'open_qna' }, '*');
+        } else {
+          alert('복사에 실패했습니다. 다시 시도해 주세요.');
+        }
       } catch (err) {
         document.body.removeChild(textarea);
-        window.parent.postMessage({ type: 'open_qna' }, '*');
+        alert('브라우저가 복사 기능을 차단했습니다.');
       }
     }
 
