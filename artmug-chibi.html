@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>[MUMMU] SD 고정틀 커미션 안내</title>
 
-  <!-- 드롭박스 raw=1 규칙이 적용된 파비콘 -->
   <link rel="icon" type="image/png" href="https://www.dropbox.com/scl/fi/863jliqddqutc9h3bkrsw/.png?rlkey=wqwls9tcthce01j69j3yeqxrb&st=9aidbq9v&raw=1">
 
   <style>
-    /* 폰트 정의 영역 */
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2'); font-weight: 100; font-display: swap; }
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2'); font-weight: 200; font-display: swap; }
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
@@ -20,7 +18,6 @@
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2'); font-weight: 800; font-display: swap; }
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
 
-    /* 다크모드/라이트모드 CSS 변수 */
     :root[data-theme="dark"] {
       --bg-page: transparent;          
       --bg-container: transparent;     
@@ -82,267 +79,56 @@
       transition: all 0.4s ease;
     }
 
-    .header {
-      margin-bottom: 47px; 
-    }
-
-    .header h1 {
-      font-size: 24px; 
-      font-weight: 800;
-      margin-bottom: 10px; 
-      color: var(--text-main);
-      word-break: keep-all;
-    }
-
-    .header p {
-      font-size: 14px; 
-      font-weight: 300;
-      color: var(--text-sub);
-    }
+    .header { margin-bottom: 47px; }
+    .header h1 { font-size: 24px; font-weight: 800; margin-bottom: 10px; color: var(--text-main); word-break: keep-all; }
+    .header p { font-size: 14px; font-weight: 300; color: var(--text-sub); }
 
     .section-title {
-      font-size: 17px; 
-      font-weight: 700;
-      margin-top: 42px; 
-      margin-bottom: 18px; 
-      padding-bottom: 8px; 
-      border-bottom: 2px solid var(--border-color);
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 10px; 
+      font-size: 17px; font-weight: 700; margin-top: 42px; margin-bottom: 18px; padding-bottom: 8px; 
+      border-bottom: 2px solid var(--border-color); color: var(--text-main); display: flex; align-items: center; gap: 10px; 
     }
 
-    .portfolio-slider-wrapper {
-      position: relative;
-      width: 100%;
-      margin-bottom: 31px; 
-    }
+    .portfolio-slider-wrapper { position: relative; width: 100%; margin-bottom: 31px; }
+    .portfolio-slider-container { width: 100%; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
+    .portfolio-slider-container::-webkit-scrollbar { display: none; }
+    .slider-track { display: flex; gap: 21px; padding: 5px 0; }
+    .slide-item { flex: 0 0 42%; min-width: 286px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 5px 16px rgba(0,0,0,0.08); }
+    @media (max-width: 520px) { .slide-item { flex: 0 0 75%; } }
 
-    .portfolio-slider-container {
-      width: 100%;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .portfolio-slider-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .slider-track {
-      display: flex;
-      gap: 21px; 
-      padding: 5px 0;
-    }
-
-    .slide-item {
-      flex: 0 0 42%;
-      min-width: 286px; 
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 16px; 
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 5px 16px rgba(0,0,0,0.08);
-    }
-
-    @media (max-width: 520px) {
-      .slide-item {
-        flex: 0 0 75%;
-      }
-    }
-
-    .video-container {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-      background: #000;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .vtuber-name {
-      padding: 16px; 
-      color: var(--text-main);
-      font-size: 13px; 
-      font-weight: 600;
-      text-align: center;
-      border-top: 1px solid var(--border-color);
-      background-color: var(--bg-card);
-      word-break: keep-all;
-    }
-
-    .loading-msg {
-      width: 100%;
-      padding: 39px; 
-      text-align: center;
-      color: var(--text-sub);
-      font-size: 14px;
-    }
+    .video-container { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .vtuber-name { padding: 16px; color: var(--text-main); font-size: 13px; font-weight: 600; text-align: center; border-top: 1px solid var(--border-color); background-color: var(--bg-card); word-break: keep-all; }
+    .loading-msg { width: 100%; padding: 39px; text-align: center; color: var(--text-sub); font-size: 14px; }
 
     .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      width: 47px;  
-      height: 47px; 
-      border-radius: 50%;
-      font-size: 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-      z-index: 5;
-      backdrop-filter: blur(4px);
+      position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.7); color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2); width: 47px; height: 47px; border-radius: 50%; font-size: 16px; 
+      cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; z-index: 5; backdrop-filter: blur(4px);
     }
-
-    .slider-btn:hover {
-      background: rgba(0, 0, 0, 0.9);
-      transform: translateY(-50%) scale(1.1);
-    }
-
+    .slider-btn:hover { background: rgba(0, 0, 0, 0.9); transform: translateY(-50%) scale(1.1); }
     .prev-btn { left: -23px; } 
     .next-btn { right: -23px; }
 
-    .gallery-section {
-      margin-top: 47px;
-      margin-bottom: 31px;
-    }
-
-    .gallery-tab-group {
-      display: flex;
-      justify-content: center;
-      gap: 10px; 
-      margin-bottom: 21px; 
-    }
-
+    .gallery-section { margin-top: 47px; margin-bottom: 31px; }
+    .gallery-tab-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 21px; }
     .tab-btn {
-      flex: 1;
-      max-width: 156px; 
-      padding: 10px 16px; 
-      background-color: var(--bg-card);
-      color: var(--text-sub);
-      border: 1px solid var(--border-color);
-      border-radius: 26px; 
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: center;
+      flex: 1; max-width: 156px; padding: 10px 16px; background-color: var(--bg-card); color: var(--text-sub);
+      border: 1px solid var(--border-color); border-radius: 26px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; text-align: center;
     }
+    .tab-btn:hover { color: var(--text-main); border-color: var(--text-sub); }
+    .tab-btn.active { background-color: var(--btn-bg); color: var(--btn-text); border-color: var(--btn-bg); box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12); }
 
-    .tab-btn:hover {
-      color: var(--text-main);
-      border-color: var(--text-sub);
-    }
+    .grid-3x3-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 480px) { .grid-3x3-container { gap: 10px; } }
+    .grid-card-item { display: flex; flex-direction: column; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; cursor: pointer; box-shadow: 0 5px 16px rgba(0,0,0,0.08); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .grid-card-item:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14); }
+    .grid-card-img-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background-color: #000; }
+    .grid-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .grid-card-caption { padding: 13px 10px; color: var(--text-main); font-size: 12px; font-weight: 600; text-align: center; border-top: 1px solid var(--border-color); background-color: var(--bg-card); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; word-break: keep-all; }
 
-    .tab-btn.active {
-      background-color: var(--btn-bg);
-      color: var(--btn-text);
-      border-color: var(--btn-bg);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-    }
-
-    .grid-3x3-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px; 
-    }
-
-    @media (max-width: 480px) {
-      .grid-3x3-container {
-        gap: 10px;
-      }
-    }
-
-    .grid-card-item {
-      display: flex;
-      flex-direction: column;
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 5px 16px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .grid-card-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.14);
-    }
-
-    .grid-card-img-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background-color: #000;
-    }
-
-    .grid-card-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .grid-card-caption {
-      padding: 13px 10px; 
-      color: var(--text-main);
-      font-size: 12px;
-      font-weight: 600;
-      text-align: center;
-      border-top: 1px solid var(--border-color);
-      background-color: var(--bg-card);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      word-break: keep-all;
-    }
-
-    .img-modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .img-modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .img-modal-content {
-      max-width: 90%;
-      max-height: 85vh;
-      border-radius: 10px;
-      box-shadow: 0 10px 42px rgba(0,0,0,0.5);
-      object-fit: contain;
-    }
+    .img-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .img-modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .img-modal-content { max-width: 90%; max-height: 85vh; border-radius: 10px; box-shadow: 0 10px 42px rgba(0,0,0,0.5); object-fit: contain; }
 
     ul { list-style: none; padding-left: 0; }
     ul li { position: relative; padding-left: 23px; margin-bottom: 10px; font-size: 14px; font-weight: 400; color: var(--text-main); }
@@ -363,15 +149,7 @@
     .price-item .type { font-weight: 500; }
     .price-item .amount { font-weight: 700; font-size: 15px; }
 
-    .form-box {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 26px;
-      margin-top: 32px;
-      margin-bottom: 21px;
-    }
-
+    .form-box { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 26px; margin-top: 32px; margin-bottom: 21px; }
     .form-group { margin-bottom: 22px; }
     .form-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
     .form-control { width: 100%; padding: 14px 18px; font-size: 14px; background-color: var(--bg-input); color: var(--input-text); border: 1px solid var(--border-color); border-radius: 10px; outline: none; transition: all 0.3s ease; }
@@ -379,76 +157,20 @@
     .form-control:focus { border-color: var(--text-main); }
     textarea.form-control { min-height: 110px; resize: vertical; }
 
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      background-color: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 16px 18px;
-    }
+    .checkbox-group { display: flex; flex-direction: column; gap: 12px; background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px 18px; }
+    .checkbox-label { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--text-main); cursor: pointer; }
+    .checkbox-label input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--btn-bg); cursor: pointer; }
 
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-main);
-      cursor: pointer;
-    }
-
-    .checkbox-label input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--btn-bg);
-      cursor: pointer;
-    }
-
-    .estimate-box {
-      background-color: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 24px;
-    }
-
-    .estimate-title {
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .estimate-amount {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--accent-color);
-    }
+    .estimate-box { background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+    .estimate-title { font-size: 15px; font-weight: 700; }
+    .estimate-amount { font-size: 18px; font-weight: 800; color: var(--accent-color); }
 
     .btn_qna {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 21px; 
-      background-color: var(--btn-bg);
-      color: var(--btn-text);
-      text-decoration: none;
-      border-radius: 13px; 
-      font-size: 16px;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      margin-top: 31px; 
-      margin-bottom: 18px; 
-      box-shadow: 0 5px 16px rgba(0,0,0,0.15);
-      cursor: pointer;
+      display: block; width: 100%; text-align: center; padding: 21px; background-color: var(--btn-bg); color: var(--btn-text);
+      text-decoration: none; border-radius: 13px; font-size: 16px; font-weight: 700; transition: all 0.3s ease; margin-top: 31px; margin-bottom: 18px; 
+      box-shadow: 0 5px 16px rgba(0,0,0,0.15); cursor: pointer;
     }
-    .btn_qna:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
+    .btn_qna:hover { opacity: 0.9; transform: translateY(-2px); }
   </style>
 </head>
 <body>
@@ -479,23 +201,14 @@
       </div>
 
       <div class="grid-3x3-container" id="mainGalleryGrid">
-        <div class="loading-msg" style="grid-column: span 3; text-align: center; padding: 20px;">
-          갤러리 이미지를 불러오는 중... 🖼️
-        </div>
+        <div class="loading-msg" style="grid-column: span 3; text-align: center; padding: 20px;">갤러리 이미지를 불러오는 중... 🖼️</div>
       </div>
     </div>
 
     <div class="section-title">📌 안내사항</div>
     <div class="info-box">
       <ul>
-        <li>
-          <strong>완성본 파일 구성</strong>
-          <ul class="sub-list">
-            <li>전신 일러스트 1장</li>
-            <li>SD Live2D 모델 1체</li>
-          </ul>
-          <p class="highlight-text">※ 별도의 파츠분리 .psd 파일은 제공되지 않습니다.</p>
-        </li>
+        <li><strong>완성본 파일 구성</strong><ul class="sub-list"><li>전신 일러스트 1장</li><li>SD Live2D 모델 1체</li></ul><p class="highlight-text">※ 별도의 파츠분리 .psd 파일은 제공되지 않습니다.</p></li>
         <li>작업기한은 입금일로부터 <strong>총 4주</strong>이며, 컨펌이 지연될수록 작업기한이 늘어납니다.</li>
         <li>고정틀 커미션인 만큼 신청자의 캐릭터 분위기와 완전히 일치하지 않을 수 있습니다.</li>
         <li>의상과 헤어가 많이 단순화됩니다.</li>
@@ -510,79 +223,35 @@
 
     <div class="section-title">🎨 고정틀 범위</div>
     <div class="grid-2">
-      <div class="grid-card">
-        <h3>⭕ 수정 가능</h3>
-        <ul>
-          <li>눈동자 및 동공 색상</li>
-          <li>눈썹 형태</li>
-          <li>헤어 스타일</li>
-          <li>의상 스타일</li>
-        </ul>
-      </div>
-      <div class="grid-card">
-        <h3>❌ 수정 불가</h3>
-        <ul>
-          <li>눈매, 눈동자, 동공 형태</li>
-          <li>입 움직임 (ㅏ ㅔ ㅣ ㅗ ㅜ)</li>
-          <li>기본 바디 베이스</li>
-        </ul>
-      </div>
+      <div class="grid-card"><h3>⭕ 수정 가능</h3><ul><li>눈동자 및 동공 색상</li><li>눈썹 형태</li><li>헤어 스타일</li><li>의상 스타일</li></ul></div>
+      <div class="grid-card"><h3>❌ 수정 불가</h3><ul><li>눈매, 눈동자, 동공 형태</li><li>입 움직임 (ㅏ ㅔ ㅣ ㅗ ㅜ)</li><li>기본 바디 베이스</li></ul></div>
     </div>
 
     <div class="section-title">🔒 사용 범위</div>
     <div class="info-box" style="margin-bottom: 16px;">
       <p style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--text-sub);">[공통 종합 규정]</p>
-      <ul>
-        <li>타인에게 양도 불가</li>
-        <li>포트폴리오 비공개 불가</li>
-        <li>원본을 심하게 훼손하는 2차 편집 및 AI 학습 금지</li>
-      </ul>
+      <ul><li>타인에게 양도 불가</li><li>포트폴리오 비공개 불가</li><li>원본을 심하게 훼손하는 2차 편집 및 AI 학습 금지</li></ul>
     </div>
     <div class="price-list">
-      <div class="price-item">
-        <span class="type">비상업용</span>
-        <span style="font-size: 13px; color: var(--text-sub);">개인 SNS 업로드 및 프로필 사진</span>
-      </div>
-      <div class="price-item">
-        <span class="type">방송용</span>
-        <span style="font-size: 13px; color: var(--text-sub);">스트리밍 및 유튜브, 틱톡 등 수익창출 가능 사이트 사용</span>
-      </div>
-      <div class="price-item">
-        <span class="type">상업용</span>
-        <span style="font-size: 13px; color: var(--text-sub);">수익 창출처 사용 + 굿즈 제작 및 2차 변형 영상물 사용</span>
-      </div>
+      <div class="price-item"><span class="type">비상업용</span><span style="font-size: 13px; color: var(--text-sub);">개인 SNS 업로드 및 프로필 사진</span></div>
+      <div class="price-item"><span class="type">방송용</span><span style="font-size: 13px; color: var(--text-sub);">스트리밍 및 유튜브, 틱톡 등 수익창출 가능 사이트 사용</span></div>
+      <div class="price-item"><span class="type">상업용</span><span style="font-size: 13px; color: var(--text-sub);">수익 창출처 사용 + 굿즈 제작 및 2차 변형 영상물 사용</span></div>
     </div>
 
     <div class="section-title">💰 금액 안내 (샘플가)</div>
     <div class="price-list">
-      <ul>
-        <li>마감기한은 총 4주입니다.</li>
-        <li>일러스트 2주, 리깅 2주</li>
-      </ul>
-      <div class="price-item">
-        <span class="type">비상업용</span>
-        <span class="amount">70,000원</span>
-      </div>
-      <div class="price-item">
-        <span class="type">방송용 ※ 8,9월 한정</span>
-        <span class="amount">120,000원</span>
-      </div>
-      <div class="price-item">
-        <span class="type">상업용 ※ 8,9월 한정</span>
-        <span class="amount">360,000원</span>
-      </div>
+      <ul><li>마감기한은 총 4주입니다.</li><li>일러스트 2주, 리깅 2주</li></ul>
+      <div class="price-item"><span class="type">비상업용</span><span class="amount">70,000원</span></div>
+      <div class="price-item"><span class="type">방송용 ※ 8,9월 한정</span><span class="amount">120,000원</span></div>
+      <div class="price-item"><span class="type">상업용 ※ 8,9월 한정</span><span class="amount">360,000원</span></div>
     </div>
 
     <div class="form-box">
       <div class="section-title" style="margin-top: 0; border-bottom: none; padding-bottom: 0;">📝 신청 양식 작성</div>
-      <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 20px;">내용을 작성하고 하단 문의하기를 누르면 양식이 자동 복사됩니다.</p>
+      <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 20px;">문의하기를 누르면 양식이 클립보드에 복사되고 팝업이 열립니다. (Ctrl+V로 붙여넣어 주세요)</p>
       
       <form id="applicationForm" onsubmit="return false;">
-        <div class="form-group">
-          <label for="nickname">닉네임 (모델명)</label>
-          <input type="text" id="nickname" name="nickname" class="form-control" placeholder="예: 멈무" required>
-        </div>
-
+        <div class="form-group"><label for="nickname">닉네임 (모델명)</label><input type="text" id="nickname" name="nickname" class="form-control" placeholder="예: 멈무" required></div>
         <div class="form-group">
           <label for="usage">사용 용도 선택</label>
           <select id="usage" name="usage" class="form-control" onchange="calculateTotalEstimate()" required>
@@ -591,43 +260,18 @@
             <option value="상업용">상업용 (360,000원)</option>
           </select>
         </div>
-
         <div class="form-group">
           <label>추가 옵션 선택</label>
           <div class="checkbox-group">
-            <label class="checkbox-label">
-              <span>추가 표정 (+5,000원)</span>
-              <input type="checkbox" id="opt_expression" value="5000" onchange="calculateTotalEstimate()">
-            </label>
-            <label class="checkbox-label">
-              <span>추가 헤어 (+30,000원)</span>
-              <input type="checkbox" id="opt_hair" value="30000" onchange="calculateTotalEstimate()">
-            </label>
-            <label class="checkbox-label">
-              <span>추가 의상 (+50,000원)</span>
-              <input type="checkbox" id="opt_clothes" value="50000" onchange="calculateTotalEstimate()">
-            </label>
-            <label class="checkbox-label" id="copyrightWrapper">
-              <span id="copyrightLabelText">저작권 구매 (상업용 전용: 최종 견적가 2배)</span>
-              <input type="checkbox" id="opt_copyright" onchange="calculateTotalEstimate()">
-            </label>
+            <label class="checkbox-label"><span>추가 표정 (+5,000원)</span><input type="checkbox" id="opt_expression" value="5000" onchange="calculateTotalEstimate()"></label>
+            <label class="checkbox-label"><span>추가 헤어 (+30,000원)</span><input type="checkbox" id="opt_hair" value="30000" onchange="calculateTotalEstimate()"></label>
+            <label class="checkbox-label"><span>추가 의상 (+50,000원)</span><input type="checkbox" id="opt_clothes" value="50000" onchange="calculateTotalEstimate()"></label>
+            <label class="checkbox-label" id="copyrightWrapper"><span id="copyrightLabelText">저작권 구매 (상업용 전용: 최종 견적가 2배)</span><input type="checkbox" id="opt_copyright" onchange="calculateTotalEstimate()"></label>
           </div>
         </div>
-
-        <div class="form-group">
-          <label for="concept">캐릭터 컨셉</label>
-          <textarea id="concept" name="concept" class="form-control" placeholder="내용 작성" required></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="additional">추가 파츠 및 요청사항</label>
-          <textarea id="additional" name="additional" class="form-control" placeholder="내용 작성"></textarea>
-        </div>
-
-        <div class="estimate-box">
-          <div class="estimate-title">예상 총 견적 금액</div>
-          <div class="estimate-amount" id="totalEstimateText">70,000원</div>
-        </div>
+        <div class="form-group"><label for="concept">캐릭터 컨셉</label><textarea id="concept" name="concept" class="form-control" placeholder="내용 작성" required></textarea></div>
+        <div class="form-group"><label for="additional">추가 파츠 및 요청사항</label><textarea id="additional" name="additional" class="form-control" placeholder="내용 작성"></textarea></div>
+        <div class="estimate-box"><div class="estimate-title">예상 총 견적 금액</div><div class="estimate-amount" id="totalEstimateText">70,000원</div></div>
       </form>
     </div>
 
@@ -640,8 +284,6 @@
 
   <script>
     const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfRpUU5EISjVKuVP-p0x1tTmiCTek-1Uhr3q18Y4tEVotijnrEHbXJENLPcBQBqtKvVU0r92oJNjuL/pub?gid=0&single=true&output=csv';
-    const CURRENT_LANG = 'ko';
-
     const GALLERY_TABS = [
       { name: '표정', url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfRpUU5EISjVKuVP-p0x1tTmiCTek-1Uhr3q18Y4tEVotijnrEHbXJENLPcBQBqtKvVU0r92oJNjuL/pub?gid=238553775&single=true&output=csv' },
       { name: '악세사리', url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfRpUU5EISjVKuVP-p0x1tTmiCTek-1Uhr3q18Y4tEVotijnrEHbXJENLPcBQBqtKvVU0r92oJNjuL/pub?gid=1737953634&single=true&output=csv' },
@@ -651,25 +293,15 @@
     function calculateTotalEstimate() {
       const usageSelect = document.getElementById('usage');
       const selectedUsage = usageSelect.value;
-
-      let basePrice = 70000;
-      if (selectedUsage === '방송용') {
-        basePrice = 120000;
-      } else if (selectedUsage === '상업용') {
-        basePrice = 360000;
-      }
-
+      let basePrice = selectedUsage === '방송용' ? 120000 : (selectedUsage === '상업용' ? 360000 : 70000);
       let addPrice = 0;
       if (document.getElementById('opt_expression').checked) addPrice += 5000;
       if (document.getElementById('opt_hair').checked) addPrice += 30000;
       if (document.getElementById('opt_clothes').checked) addPrice += 50000;
-
       let subTotal = basePrice + addPrice;
-
       const copyrightCheckbox = document.getElementById('opt_copyright');
       const copyrightWrapper = document.getElementById('copyrightWrapper');
       const copyrightLabelText = document.getElementById('copyrightLabelText');
-
       if (selectedUsage !== '상업용') {
         copyrightCheckbox.checked = false;
         copyrightCheckbox.disabled = true;
@@ -680,12 +312,7 @@
         copyrightWrapper.style.opacity = '1';
         copyrightLabelText.style.color = 'var(--text-main)';
       }
-
-      let finalTotal = subTotal;
-      if (selectedUsage === '상업용' && copyrightCheckbox.checked) {
-        finalTotal = subTotal * 2;
-      }
-
+      let finalTotal = (selectedUsage === '상업용' && copyrightCheckbox.checked) ? subTotal * 2 : subTotal;
       document.getElementById('totalEstimateText').textContent = finalTotal.toLocaleString() + '원';
       return finalTotal;
     }
@@ -694,13 +321,11 @@
     function scrollSlider(direction) {
       const slideItem = container.querySelector('.slide-item');
       if (!slideItem) return;
-      const scrollAmount = slideItem.clientWidth + 21; 
-      container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+      container.scrollBy({ left: direction * (slideItem.clientWidth + 21), behavior: 'smooth' });
     }
 
     function parseCSV(text) {
-      const lines = text.trim().split(/\r?\n/);
-      return lines.map(line => line.split(',').map(cell => cell.trim().replace(/^"(.*)"$/, '$1')));
+      return text.trim().split(/\r?\n/).map(line => line.split(',').map(cell => cell.trim().replace(/^"(.*)"$/, '$1')));
     }
 
     function convertDropboxUrl(url) {
@@ -708,9 +333,7 @@
       let directUrl = url.trim();
       if (directUrl.includes('dropbox.com')) {
         directUrl = directUrl.replace('dl=0', 'raw=1').replace('dl=1', 'raw=1');
-        if (!directUrl.includes('raw=1')) {
-          directUrl += (directUrl.includes('?') ? '&' : '?') + 'raw=1';
-        }
+        if (!directUrl.includes('raw=1')) directUrl += (directUrl.includes('?') ? '&' : '?') + 'raw=1';
       }
       return directUrl;
     }
@@ -736,21 +359,34 @@
       const optionsStr = optionsText.length > 0 ? optionsText.join(', ') : '없음';
       const finalEstimate = document.getElementById('totalEstimateText').textContent;
 
-      const formattedHtml = 
-`[SD 고정틀 신청 양식]<br>
-- 닉네임 (모델명): ${nickname}<br>
-- 사용 용도: ${usage}<br>
-- 선택된 추가 옵션: ${optionsStr}<br>
-- 예상 총 견적: ${finalEstimate}<br>
-- 캐릭터 컨셉:<br>
-${concept.replace(/\n/g, '<br>')}<br><br>
-- 추가 파츠 및 요청사항:<br>
-${additional.replace(/\n/g, '<br>')}`;
+      const formattedText = 
+`[SD 고정틀 신청 양식]
+- 닉네임 (모델명): ${nickname}
+- 사용 용도: ${usage}
+- 선택된 추가 옵션: ${optionsStr}
+- 예상 총 견적: ${finalEstimate}
+- 캐릭터 컨셉:
+${concept}
+
+- 추가 파츠 및 요청사항:
+${additional}`;
+
+      // 클립보드 복사 후 알림 없이 부모 창에 팝업 요청 전달
+      const textarea = document.createElement('textarea');
+      textarea.value = formattedText;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
 
       try {
-        window.parent.postMessage({ type: 'open_qna', formText: formattedHtml }, '*');
-      } catch (e) {
-        window.top.postMessage({ type: 'open_qna', formText: formattedHtml }, '*');
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        window.parent.postMessage({ type: 'open_qna' }, '*');
+      } catch (err) {
+        document.body.removeChild(textarea);
+        window.parent.postMessage({ type: 'open_qna' }, '*');
       }
     }
 
@@ -758,40 +394,25 @@ ${additional.replace(/\n/g, '<br>')}`;
       const sliderTrack = document.getElementById('sliderTrack');
       try {
         const response = await fetch(SHEET_CSV_URL);
-        const csvText = await response.text();
-        const rows = parseCSV(csvText);
-
-        sliderTrack.innerHTML = ''; 
-
+        const rows = parseCSV(await response.text());
+        sliderTrack.innerHTML = '';
         for (let i = 1; i < rows.length; i++) {
           let [order, videoId, description] = rows[i];
           if (!videoId) continue;
+          if (videoId.includes('shorts/')) videoId = videoId.split('shorts/')[1].split('?')[0];
+          else if (videoId.includes('v=')) videoId = videoId.split('v=')[1].split('&')[0];
+          else if (videoId.includes('youtu.be/')) videoId = videoId.split('youtu.be/')[1].split('?')[0];
 
-          if (videoId.includes('shorts/')) {
-            videoId = videoId.split('shorts/')[1].split('?')[0];
-          } else if (videoId.includes('v=')) {
-            videoId = videoId.split('v=')[1].split('&')[0];
-          } else if (videoId.includes('youtu.be/')) {
-            videoId = videoId.split('youtu.be/')[1].split('?')[0];
-          }
-
-          const slideHtml = `
+          sliderTrack.insertAdjacentHTML('beforeend', `
             <div class="slide-item">
               <div class="video-container">
-                <iframe 
-                  src="https://www.youtube.com/embed/${videoId}" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/${videoId}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </div>
               <div class="vtuber-name">${description || 'VTuber 샘플'}</div>
             </div>
-          `;
-          sliderTrack.insertAdjacentHTML('beforeend', slideHtml);
+          `);
         }
       } catch (error) {
-        console.error('포트폴리오 오류:', error);
         sliderTrack.innerHTML = `<div class="loading-msg">⚠️ 포트폴리오를 불러오지 못했습니다.</div>`;
       }
     }
@@ -799,55 +420,27 @@ ${additional.replace(/\n/g, '<br>')}`;
     async function loadTabGallery(tabIndex) {
       const galleryContainer = document.getElementById('mainGalleryGrid');
       galleryContainer.innerHTML = `<div class="loading-msg" style="grid-column: span 3; text-align: center; padding: 20px;">불러오는 중... 🖼️</div>`;
-
-      const tabData = GALLERY_TABS[tabIndex];
-
       try {
-        const response = await fetch(tabData.url);
-        const csvText = await response.text();
-        const rows = parseCSV(csvText);
-
+        const rows = parseCSV(await (await fetch(GALLERY_TABS[tabIndex].url)).text());
         let imageItems = [];
-        let langColIndex = 2; 
-
         for (let i = 1; i < rows.length; i++) {
           if (!rows[i] || rows[i].length < 2) continue;
-
-          const order = rows[i][0] ? rows[i][0].trim() : '';
-          const rawUrl = rows[i][1] ? rows[i][1].trim() : '';
-          const description = rows[i][langColIndex] ? rows[i][langColIndex].trim() : '';
-
+          let rawUrl = rows[i][1] ? rows[i][1].trim() : '';
           if (rawUrl && rawUrl.length > 5) {
-            imageItems.push({
-              order: parseInt(order) || (imageItems.length + 1),
-              url: convertDropboxUrl(rawUrl),
-              description: description
-            });
+            imageItems.push({ order: parseInt(rows[i][0]) || (imageItems.length + 1), url: convertDropboxUrl(rawUrl), description: rows[i][2] ? rows[i][2].trim() : '' });
           }
         }
-
         imageItems = imageItems.slice(0, 9);
-        galleryContainer.innerHTML = '';
-
-        if (imageItems.length === 0) {
-          galleryContainer.innerHTML = `<div class="loading-msg" style="grid-column: span 3; text-align: center;">등록된 샘플이 없습니다.</div>`;
-          return;
-        }
-
-        imageItems.forEach((item) => {
-          const cardHtml = `
+        galleryContainer.innerHTML = imageItems.length === 0 ? `<div class="loading-msg" style="grid-column: span 3; text-align: center;">등록된 샘플이 없습니다.</div>` : '';
+        imageItems.forEach(item => {
+          galleryContainer.insertAdjacentHTML('beforeend', `
             <div class="grid-card-item" onclick="openImageModal('${item.url}')">
-              <div class="grid-card-img-wrap">
-                <img src="${item.url}" alt="${tabData.name} 샘플 ${item.order}" loading="lazy">
-              </div>
+              <div class="grid-card-img-wrap"><img src="${item.url}" alt="샘플" loading="lazy"></div>
               ${item.description ? `<div class="grid-card-caption">${item.description}</div>` : ''}
             </div>
-          `;
-          galleryContainer.insertAdjacentHTML('beforeend', cardHtml);
+          `);
         });
-
       } catch (err) {
-        console.error('갤러리 로딩 에러:', err);
         galleryContainer.innerHTML = `<div class="loading-msg" style="grid-column: span 3; text-align: center;">⚠️ 샘플을 불러오지 못했습니다.</div>`;
       }
     }
@@ -859,10 +452,8 @@ ${additional.replace(/\n/g, '<br>')}`;
     }
 
     function openImageModal(src) {
-      const modal = document.getElementById('imgModal');
-      const modalImg = document.getElementById('modalImg');
-      modalImg.src = src;
-      modal.classList.add('active');
+      document.getElementById('modalImg').src = src;
+      document.getElementById('imgModal').classList.add('active');
     }
 
     function closeImageModal() {
