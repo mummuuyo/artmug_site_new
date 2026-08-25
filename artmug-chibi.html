@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>[MUMMU] SD 고정틀 커미션 안내</title>
 
-  <!-- 파비콘(Favicon) 설정 (드롭박스 raw=1 규칙 적용) -->
+  <!-- 드롭박스 raw=1 규칙이 적용된 파비콘 -->
   <link rel="icon" type="image/png" href="https://www.dropbox.com/scl/fi/863jliqddqutc9h3bkrsw/.png?rlkey=wqwls9tcthce01j69j3yeqxrb&st=9aidbq9v&raw=1">
 
   <style>
-    /* 1. 파페로지(Paperlogy) 폰트 정의 */
+    /* 폰트 정의 영역 */
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2'); font-weight: 100; font-display: swap; }
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2'); font-weight: 200; font-display: swap; }
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
@@ -20,13 +20,16 @@
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2'); font-weight: 800; font-display: swap; }
     @font-face { font-family: 'Paperozi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
 
-    /* 2. 테마별 CSS 변수 설정 */
+    /* 다크모드/라이트모드 CSS 변수 */
     :root[data-theme="dark"] {
       --bg-page: transparent;          
       --bg-container: transparent;     
       --bg-card: #242424;
+      --bg-input: #1a1a1a;
       --text-main: #ffffff;        
       --text-sub: #a0a0a0;         
+      --placeholder: #777777;
+      --input-text: #ffffff;
       --border-color: #333333;     
       --btn-bg: #ffffff;           
       --btn-text: #000000;         
@@ -37,8 +40,11 @@
       --bg-page: transparent;           
       --bg-container: transparent;     
       --bg-card: #f9f9fb;
+      --bg-input: #ffffff;
       --text-main: #1d1d1f;        
       --text-sub: #6e6e73;         
+      --placeholder: #a8a8af;
+      --input-text: #1d1d1f;
       --border-color: #e2e8f0;     
       --btn-bg: #000000;           
       --btn-text: #ffffff;         
@@ -64,7 +70,7 @@
       line-height: 1.6;
     }
 
-    /* UI 전체 1.3배 확대 (폰트 크기 유지, 패딩/너비/간격 1.3배 적용) */
+    /* 전체 UI 1.3배 확대 레이아웃 컨테이너 */
     .container {
       position: relative;
       background: var(--bg-container);
@@ -95,7 +101,6 @@
       color: var(--text-sub);
     }
 
-    /* 섹션 제목 */
     .section-title {
       font-size: 17px; 
       font-weight: 700;
@@ -109,7 +114,7 @@
       gap: 10px; 
     }
 
-    /* 🎬 포트폴리오 멀티 슬라이더 */
+    /* 포트폴리오 슬라이더 스타일 */
     .portfolio-slider-wrapper {
       position: relative;
       width: 100%;
@@ -187,7 +192,6 @@
       font-size: 14px;
     }
 
-    /* 슬라이드 화살표 버튼 */
     .slider-btn {
       position: absolute;
       top: 50%;
@@ -216,7 +220,7 @@
     .prev-btn { left: -23px; } 
     .next-btn { right: -23px; }
 
-    /* 샘플 갤러리 3x3 관련 스타일 */
+    /* 갤러리 탭 및 그리드 스타일 */
     .gallery-section {
       margin-top: 47px;
       margin-bottom: 31px;
@@ -276,13 +280,13 @@
       border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
-      box-shadow: 0 5px 16px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 5px 16px rgba(0,0,0,0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .grid-card-item:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.14);
     }
 
     .grid-card-img-wrap {
@@ -343,7 +347,6 @@
       object-fit: contain;
     }
 
-    /* 리스트 및 일반 스타일 */
     ul { list-style: none; padding-left: 0; }
     ul li { position: relative; padding-left: 23px; margin-bottom: 10px; font-size: 14px; font-weight: 400; color: var(--text-main); }
     ul li::before { content: "•"; position: absolute; left: 5px; color: var(--text-sub); font-weight: bold; }
@@ -363,7 +366,75 @@
     .price-item .type { font-weight: 500; }
     .price-item .amount { font-weight: 700; font-size: 15px; }
 
-    /* 아트머그 문의하기 버튼 스타일 (1.3배 확대) */
+    /* 신청 양식 폼 박스 디자인 스타일 */
+    .form-box {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 26px;
+      margin-top: 32px;
+      margin-bottom: 21px;
+    }
+
+    .form-group { margin-bottom: 22px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+    .form-control { width: 100%; padding: 14px 18px; font-size: 14px; background-color: var(--bg-input); color: var(--input-text); border: 1px solid var(--border-color); border-radius: 10px; outline: none; transition: all 0.3s ease; }
+    .form-control::placeholder { color: var(--placeholder); }
+    .form-control:focus { border-color: var(--text-main); }
+    textarea.form-control { min-height: 110px; resize: vertical; }
+
+    /* 체크박스 옵션 리스트 스타일 */
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--btn-bg);
+      cursor: pointer;
+    }
+
+    /* 실시간 견적 표시 박스 스타일 */
+    .estimate-box {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .estimate-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .estimate-amount {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent-color);
+    }
+
+    /* 아트머그 문의하기 버튼 디자인 */
     .btn_qna {
       display: block;
       width: 100%;
@@ -390,12 +461,13 @@
 <body>
 
   <div class="container">
+    <!-- 헤더 영역 -->
     <div class="header">
       <h1>[MUMMU] SD 고정틀 커미션 안내</h1>
       <p>신청 전 아래 안내사항 및 작업 범위를 반드시 확인해 주세요.</p>
     </div>
 
-    <!-- 🎬 0. 포트폴리오 슬라이더 섹션 -->
+    <!-- 포트폴리오 슬라이더 -->
     <div class="section-title">🎬 포트폴리오</div>
     <div class="portfolio-slider-wrapper">
       <button class="slider-btn prev-btn" onclick="scrollSlider(-1)">&#10094;</button>
@@ -407,7 +479,7 @@
       <button class="slider-btn next-btn" onclick="scrollSlider(1)">&#10095;</button>
     </div>
 
-    <!-- 🖼️ 샘플 갤러리 (3x3 그리드) -->
+    <!-- 갤러리 섹션 -->
     <div class="gallery-section">
       <div class="section-title">🖼️ 표정</div>
       <div class="gallery-tab-group">
@@ -423,7 +495,7 @@
       </div>
     </div>
 
-    <!-- 1. 안내사항 -->
+    <!-- 안내사항 -->
     <div class="section-title">📌 안내사항</div>
     <div class="info-box">
       <ul>
@@ -447,7 +519,7 @@
       </ul>
     </div>
 
-    <!-- 2. 고정틀 범위 -->
+    <!-- 고정틀 범위 -->
     <div class="section-title">🎨 고정틀 범위</div>
     <div class="grid-2">
       <div class="grid-card">
@@ -469,7 +541,7 @@
       </div>
     </div>
 
-    <!-- 3. 사용 범위 -->
+    <!-- 사용 범위 -->
     <div class="section-title">🔒 사용 범위</div>
     <div class="info-box" style="margin-bottom: 16px;">
       <p style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--text-sub);">[공통 종합 규정]</p>
@@ -494,9 +566,13 @@
       </div>
     </div>
 
-    <!-- 4. 금액 -->
+    <!-- 금액 안내 -->
     <div class="section-title">💰 금액 안내 (샘플가)</div>
     <div class="price-list">
+      <ul>
+        <li>마감기한은 총 4주입니다.</li>
+        <li>일러스트 2주, 리깅 2주</li>
+      </ul>
       <div class="price-item">
         <span class="type">비상업용</span>
         <span class="amount">70,000원</span>
@@ -511,8 +587,73 @@
       </div>
     </div>
 
-    <!-- 아트머그 문의하기 팝업 버튼 (postMessage 통신 연동) -->
-    <div class="btn_qna" onclick="requestQnaPopup(); return false;">문의하기</div>
+    <!-- 신청 양식 및 실시간 견적 계산기 폼 영역 -->
+    <div class="form-box">
+      <div class="section-title" style="margin-top: 0; border-bottom: none; padding-bottom: 0;">📝 신청 양식 작성</div>
+      <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 20px;">내용을 작성하고 하단 문의하기를 누르면 양식이 자동 복사됩니다.</p>
+      
+      <form id="applicationForm" onsubmit="return false;">
+        <!-- 닉네임 입력 -->
+        <div class="form-group">
+          <label for="nickname">닉네임 (모델명)</label>
+          <input type="text" id="nickname" name="nickname" class="form-control" placeholder="예: 멈무" required>
+        </div>
+
+        <!-- 사용 용도 선택 드롭다운 -->
+        <div class="form-group">
+          <label for="usage">사용 용도 선택</label>
+          <select id="usage" name="usage" class="form-control" onchange="calculateTotalEstimate()" required>
+            <option value="개인소장">개인소장 (70,000원)</option>
+            <option value="방송용">방송용 (120,000원)</option>
+            <option value="상업용">상업용 (360,000원)</option>
+          </select>
+        </div>
+
+        <!-- 추가 옵션 체크박스 영역 -->
+        <div class="form-group">
+          <label>추가 옵션 선택</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <span>추가 표정 (+5,000원)</span>
+              <input type="checkbox" id="opt_expression" value="5000" onchange="calculateTotalEstimate()">
+            </label>
+            <label class="checkbox-label">
+              <span>추가 헤어 (+30,000원)</span>
+              <input type="checkbox" id="opt_hair" value="30000" onchange="calculateTotalEstimate()">
+            </label>
+            <label class="checkbox-label">
+              <span>추가 의상 (+50,000원)</span>
+              <input type="checkbox" id="opt_clothes" value="50000" onchange="calculateTotalEstimate()">
+            </label>
+            <label class="checkbox-label" id="copyrightWrapper">
+              <span id="copyrightLabelText">저작권 구매 (상업용 전용: 최종 견적가 2배)</span>
+              <input type="checkbox" id="opt_copyright" onchange="calculateTotalEstimate()">
+            </label>
+          </div>
+        </div>
+
+        <!-- 캐릭터 컨셉 -->
+        <div class="form-group">
+          <label for="concept">캐릭터 컨셉</label>
+          <textarea id="concept" name="concept" class="form-control" placeholder="내용 작성" required></textarea>
+        </div>
+
+        <!-- 추가 파츠 및 요청사항 -->
+        <div class="form-group">
+          <label for="additional">추가 파츠 및 요청사항</label>
+          <textarea id="additional" name="additional" class="form-control" placeholder="내용 작성"></textarea>
+        </div>
+
+        <!-- 실시간 견적 표시 영역 -->
+        <div class="estimate-box">
+          <div class="estimate-title">예상 총 견적 금액</div>
+          <div class="estimate-amount" id="totalEstimateText">70,000원</div>
+        </div>
+      </form>
+    </div>
+
+    <!-- 문의하기 버튼 (클릭 시 자동 복사 및 아트머그 팝업 통신 수행) -->
+    <div class="btn_qna" onclick="handleQnaClick()">문의하기</div>
   </div>
 
   <!-- 이미지 확대 모달 -->
@@ -521,6 +662,7 @@
   </div>
 
   <script>
+    // 구글 스프레드시트 CSV 연동 주소 설정
     const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfRpUU5EISjVKuVP-p0x1tTmiCTek-1Uhr3q18Y4tEVotijnrEHbXJENLPcBQBqtKvVU0r92oJNjuL/pub?gid=0&single=true&output=csv';
     const CURRENT_LANG = 'ko';
 
@@ -530,7 +672,51 @@
       { name: '포즈', url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfRpUU5EISjVKuVP-p0x1tTmiCTek-1Uhr3q18Y4tEVotijnrEHbXJENLPcBQBqtKvVU0r92oJNjuL/pub?gid=1561439969&single=true&output=csv' }
     ];
 
-    /* 슬라이더 컨트롤 */
+    // 실시간 총 견적 계산 및 저작권 옵션 제어 함수
+    function calculateTotalEstimate() {
+      const usageSelect = document.getElementById('usage');
+      const selectedUsage = usageSelect.value;
+
+      let basePrice = 70000;
+      if (selectedUsage === '방송용') {
+        basePrice = 120000;
+      } else if (selectedUsage === '상업용') {
+        basePrice = 360000;
+      }
+
+      let addPrice = 0;
+      if (document.getElementById('opt_expression').checked) addPrice += 5000;
+      if (document.getElementById('opt_hair').checked) addPrice += 30000;
+      if (document.getElementById('opt_clothes').checked) addPrice += 50000;
+
+      let subTotal = basePrice + addPrice;
+
+      const copyrightCheckbox = document.getElementById('opt_copyright');
+      const copyrightWrapper = document.getElementById('copyrightWrapper');
+      const copyrightLabelText = document.getElementById('copyrightLabelText');
+
+      // 저작권 구매 옵션은 상업용 선택 시에만 활성화 처리
+      if (selectedUsage !== '상업용') {
+        copyrightCheckbox.checked = false;
+        copyrightCheckbox.disabled = true;
+        copyrightWrapper.style.opacity = '0.4';
+        copyrightLabelText.style.color = 'var(--text-sub)';
+      } else {
+        copyrightCheckbox.disabled = false;
+        copyrightWrapper.style.opacity = '1';
+        copyrightLabelText.style.color = 'var(--text-main)';
+      }
+
+      let finalTotal = subTotal;
+      if (selectedUsage === '상업용' && copyrightCheckbox.checked) {
+        finalTotal = subTotal * 2;
+      }
+
+      document.getElementById('totalEstimateText').textContent = finalTotal.toLocaleString() + '원';
+      return finalTotal;
+    }
+
+    // 포트폴리오 슬라이더 스크롤 제어
     const container = document.getElementById('sliderContainer');
     function scrollSlider(direction) {
       const slideItem = container.querySelector('.slide-item');
@@ -539,13 +725,13 @@
       container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
     }
 
-    /* CSV 파싱 함수 */
+    // CSV 파싱 함수
     function parseCSV(text) {
       const lines = text.trim().split(/\r?\n/);
       return lines.map(line => line.split(',').map(cell => cell.trim().replace(/^"(.*)"$/, '$1')));
     }
 
-    /* Dropbox 링크 변환 (raw=1 규칙) */
+    // 드롭박스 링크 raw=1 변환 규칙 적용
     function convertDropboxUrl(url) {
       if (!url) return '';
       let directUrl = url.trim();
@@ -558,16 +744,53 @@
       return directUrl;
     }
 
-    /* 아트머그 부모 창으로 문의 팝업 요청 전송 */
-function requestQnaPopup() {
-  try {
-    window.parent.postMessage({ type: 'open_qna' }, '*');
-  } catch (e) {
-    window.top.postMessage({ type: 'open_qna' }, '*');
-  }
-}
+    // 문의하기 버튼 클릭 시 양식 클립보드 복사 및 아트머그 팝업창 호출 트리거
+    function handleQnaClick() {
+      const nickname = document.getElementById('nickname').value;
+      const usage = document.getElementById('usage').value;
+      const concept = document.getElementById('concept').value;
+      const additional = document.getElementById('additional').value;
 
-    /* 포트폴리오 로딩 */
+      if (!nickname || !usage || !concept) {
+        alert('필수 입력 항목(닉네임, 사용 용도, 캐릭터 컨셉)을 모두 채워주세요!');
+        document.getElementById('nickname').focus();
+        return;
+      }
+
+      let optionsText = [];
+      if (document.getElementById('opt_expression').checked) optionsText.push('추가 표정 (+5,000원)');
+      if (document.getElementById('opt_hair').checked) optionsText.push('추가 헤어 (+30,000원)');
+      if (document.getElementById('opt_clothes').checked) optionsText.push('추가 의상 (+50,000원)');
+      if (document.getElementById('opt_copyright').checked) optionsText.push('저작권 구매 (최종 견적가 2배 적용)');
+
+      const optionsStr = optionsText.length > 0 ? optionsText.join(', ') : '없음';
+      const finalEstimate = document.getElementById('totalEstimateText').textContent;
+
+      const formattedText = 
+`[SD 고정틀 신청 양식]
+- 닉네임 (모델명): ${nickname}
+- 사용 용도: ${usage}
+- 선택된 추가 옵션: ${optionsStr}
+- 예상 총 견적: ${finalEstimate}
+- 캐릭터 컨셉:
+${concept}
+
+- 추가 파츠 및 요청사항:
+${additional}`;
+
+      navigator.clipboard.writeText(formattedText).then(() => {
+        alert('신청서 양식이 클립보드에 복사되었습니다!\n잠시 후 열리는 문의 창에 붙여넣기(Ctrl+V) 해주세요.');
+        try {
+          window.parent.postMessage({ type: 'open_qna' }, '*');
+        } catch (e) {
+          window.top.postMessage({ type: 'open_qna' }, '*');
+        }
+      }).catch(err => {
+        alert('양식 복사에 실패했습니다. 브라우저 권한을 확인해 주세요.');
+      });
+    }
+
+    // 포트폴리오 데이터 불러오기
     async function loadPortfolioFromSheet() {
       const sliderTrack = document.getElementById('sliderTrack');
       try {
@@ -610,7 +833,7 @@ function requestQnaPopup() {
       }
     }
 
-    /* 샘플 갤러리 로딩 */
+    // 샘플 갤러리 탭별 데이터 로딩
     async function loadTabGallery(tabIndex) {
       const galleryContainer = document.getElementById('mainGalleryGrid');
       galleryContainer.innerHTML = `<div class="loading-msg" style="grid-column: span 3; text-align: center; padding: 20px;">불러오는 중... 🖼️</div>`;
@@ -684,9 +907,11 @@ function requestQnaPopup() {
       document.getElementById('imgModal').classList.remove('active');
     }
 
+    // 페이지 로드 시 초기화 함수 실행
     window.addEventListener('DOMContentLoaded', () => {
       loadPortfolioFromSheet();
       loadTabGallery(0);
+      calculateTotalEstimate();
     });
   </script>
 </body>
