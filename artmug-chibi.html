@@ -152,14 +152,37 @@
     .form-box { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 26px; margin-top: 32px; margin-bottom: 21px; }
     .form-group { margin-bottom: 22px; }
     .form-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+    .required-star { color: #ff4d4f; margin-left: 2px; font-weight: 700; }
+
     .form-control { width: 100%; padding: 14px 18px; font-size: 14px; background-color: var(--bg-input); color: var(--input-text); border: 1px solid var(--border-color); border-radius: 10px; outline: none; transition: all 0.3s ease; }
     .form-control::placeholder { color: var(--placeholder); }
     .form-control:focus { border-color: var(--text-main); }
+    
+    select.form-control { cursor: pointer; padding-right: 46px; text-overflow: ellipsis; appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 18px center; background-size: 16px; }
     textarea.form-control { min-height: 110px; resize: vertical; }
 
-    .checkbox-group { display: flex; flex-direction: column; gap: 12px; background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px 18px; }
-    .checkbox-label { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--text-main); cursor: pointer; }
-    .checkbox-label input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--btn-bg); cursor: pointer; }
+    .checkbox-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    @media (max-width: 500px) { .checkbox-grid-3 { grid-template-columns: 1fr; } }
+
+    .options-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 12px; }
+    @media (max-width: 580px) { .options-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .option-card, .check-card { background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 10px; display: flex; align-items: center; gap: 11px; cursor: pointer; transition: all 0.2s ease; user-select: none; }
+    .option-card:hover, .check-card:hover { border-color: var(--text-sub); }
+    .option-card input[type="checkbox"], .check-card input[type="radio"], .check-card input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--btn-bg); cursor: pointer; position: relative; top: 2px; }
+    .option-card span, .check-card span { font-size: 13px; font-weight: 600; color: var(--text-main); position: relative; top: -2px; }
+
+    .option-detail-box { background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: none; }
+    .option-detail-box.active { display: block; }
+    .option-detail-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .option-detail-title { font-size: 14px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 11px; }
+    .option-detail-title input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--btn-bg); cursor: pointer; position: relative; top: 2px; }
+    .option-detail-title span { position: relative; top: -2px; }
+
+    .quantity-control { display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background-color: var(--bg-card); width: fit-content; }
+    .qty-btn { background: transparent; border: none; padding: 6px 12px; font-size: 14px; font-weight: 700; color: var(--text-main); cursor: pointer; }
+    .qty-btn:hover { background-color: rgba(0,0,0,0.05); }
+    .qty-input { width: 36px; text-align: center; border: none; background: transparent; font-size: 14px; font-weight: 700; color: var(--text-main); outline: none; }
 
     .estimate-box { background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
     .estimate-title { font-size: 15px; font-weight: 700; }
@@ -171,6 +194,13 @@
       box-shadow: 0 5px 16px rgba(0,0,0,0.15); cursor: pointer;
     }
     .btn_qna:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    .btn_form {
+      display: block; width: 100%; text-align: center; padding: 21px; background-color: #0066cc; color: var(--btn-text);
+      text-decoration: none; border-radius: 13px; font-size: 16px; font-weight: 700; transition: all 0.3s ease;  margin: 31px auto 18px auto;
+      box-shadow: 0 5px 16px rgba(0,0,0,0.15); cursor: pointer;
+    }
+    .btn_form:hover { opacity: 0.9; transform: translateY(-2px); }
   </style>
 </head>
 <body>
@@ -209,7 +239,7 @@
     <div class="info-box">
       <ul>
         <li><strong>완성본 파일 구성</strong><ul class="sub-list"><li>전신 일러스트 1장</li><li>SD Live2D 모델 1체</li></ul><p class="highlight-text">※ 별도의 파츠분리 .psd 파일은 제공되지 않습니다.</p></li>
-        <li>작업기한은 입금일로부터 <strong>총 4주</strong>이며, 컨펌이 지연될수록 작업기한이 늘어납니다.</li>
+        <li>작업기한은 입금일로부터 <strong>마감 기한은 2주입니다.</strong>, 컨펌이 지연될수록 작업기한이 늘어납니다.</li>
         <li>고정틀 커미션인 만큼 신청자의 캐릭터 분위기와 완전히 일치하지 않을 수 있습니다.</li>
         <li>의상과 헤어가 많이 단순화됩니다.</li>
         <li>모든 표정은 기본으로 제공됩니다.</li>
@@ -238,12 +268,12 @@
       <div class="price-item"><span class="type">상업용</span><span style="font-size: 13px; color: var(--text-sub);">수익 창출처 사용 + 굿즈 제작 및 2차 변형 영상물 사용</span></div>
     </div>
 
-    <div class="section-title">💰 금액 안내 (샘플가)</div>
+    <div class="section-title">💰 금액 안내</div>
     <div class="price-list">
-      <ul><li>마감기한은 총 4주입니다.</li><li>일러스트 2주, 리깅 2주</li></ul>
+      <ul><li>마감 기한은 2주입니다.</li></ul>
       <div class="price-item"><span class="type">비상업용</span><span class="amount">70,000원</span></div>
-      <div class="price-item"><span class="type">방송용 ※ 8,9월 한정</span><span class="amount">120,000원</span></div>
-      <div class="price-item"><span class="type">상업용 ※ 8,9월 한정</span><span class="amount">360,000원</span></div>
+      <div class="price-item"><span class="type">방송용</span><span class="amount">140,000원</span></div>
+      <div class="price-item"><span class="type">상업용</span><span class="amount">420,000원</span></div>
     </div>
 
     <div class="form-box">
@@ -251,32 +281,158 @@
       <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 20px;">문의하기를 누르면 양식이 자동 입력됩니다.</p>
       
       <form id="applicationForm" onsubmit="return false;">
-        <div class="form-group"><label for="nickname">닉네임 (모델명)</label><input type="text" id="nickname" name="nickname" class="form-control" placeholder="예: 멈무" required></div>
         <div class="form-group">
-          <label for="usage">사용 용도 선택</label>
-          <select id="usage" name="usage" class="form-control" onchange="calculateTotalEstimate()" required>
-            <option value="개인소장">개인소장 (70,000원)</option>
-            <option value="방송용">방송용 (120,000원)</option>
-            <option value="상업용">상업용 (360,000원)</option>
-          </select>
+          <label for="nickname">닉네임 (모델명) <span class="required-star">*</span></label>
+          <input type="text" id="nickname" name="nickname" class="form-control" placeholder="예: 멈무" required>
         </div>
+
         <div class="form-group">
-          <label>추가 옵션 선택</label>
-          <div class="checkbox-group">
-            <label class="checkbox-label"><span>추가 표정 (+5,000원)</span><input type="checkbox" id="opt_expression" value="5000" onchange="calculateTotalEstimate()"></label>
-            <label class="checkbox-label"><span>추가 헤어 (+30,000원)</span><input type="checkbox" id="opt_hair" value="30000" onchange="calculateTotalEstimate()"></label>
-            <label class="checkbox-label"><span>추가 의상 (+50,000원)</span><input type="checkbox" id="opt_clothes" value="50000" onchange="calculateTotalEstimate()"></label>
-            <label class="checkbox-label" id="copyrightWrapper"><span id="copyrightLabelText">저작권 구매 (상업용 전용: 최종 견적가 2배)</span><input type="checkbox" id="opt_copyright" onchange="calculateTotalEstimate()"></label>
+          <label>사용 용도 <span class="required-star">*</span></label>
+          <div class="checkbox-grid-3">
+            <label class="check-card">
+              <input type="radio" name="usage" value="비상업용" data-price="70000" checked onchange="calculateTotalEstimate()">
+              <span>비상업용 (70,000원)</span>
+            </label>
+            <label class="check-card">
+              <input type="radio" name="usage" value="방송용" data-price="140000" onchange="calculateTotalEstimate()">
+              <span>방송용 (140,000원)</span>
+            </label>
+            <label class="check-card">
+              <input type="radio" name="usage" value="상업용" data-price="420000" onchange="calculateTotalEstimate()">
+              <span>상업용 (420,000원)</span>
+            </label>
           </div>
         </div>
-        <div class="form-group"><label for="concept">캐릭터 컨셉</label><textarea id="concept" name="concept" class="form-control" placeholder="내용 작성" required></textarea></div>
-        <div class="form-group"><label for="additional">추가 파츠 및 요청사항</label><textarea id="additional" name="additional" class="form-control" placeholder="내용 작성"></textarea></div>
-        <div class="estimate-box"><div class="estimate-title">예상 총 견적 금액</div><div class="estimate-amount" id="totalEstimateText">70,000원</div></div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label>🧾 리뷰 이벤트</label>
+            <label class="check-card" style="margin-top: 4px;">
+              <input type="checkbox" id="review_event" onchange="calculateTotalEstimate()">
+              <span>리뷰 이벤트 참여 (-10,000원)</span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="portfolio_release">📥 포트폴리오 공개일</label>
+            <select id="portfolio_release" name="portfolio_release" class="form-control" onchange="toggleScheduleDate(); calculateTotalEstimate();">
+              <option value="작업 후 공개" selected>작업 후 공개</option>
+              <option value="지정일 공개 +10,000원">지정일 공개 +10,000원</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" id="schedule_date_box" style="display: none;">
+          <label for="release_date">📅 공개일 지정 (달력)</label>
+          <input type="date" id="release_date" name="release_date" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>➕ 추가 옵션 선택</label>
+          
+          <div class="options-grid">
+            <label class="option-card">
+              <input type="checkbox" id="opt_expression_check" data-price="5000" onchange="syncOption('expression'); calculateTotalEstimate();">
+              <span>표정 추가</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" id="opt_prop_check" data-price="5000" onchange="syncOption('prop'); calculateTotalEstimate();">
+              <span>소품 추가</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" id="opt_hair_check" data-price="30000" onchange="syncOption('hair'); calculateTotalEstimate();">
+              <span>헤어 추가</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" id="opt_outfit_check" data-price="20000" onchange="syncOption('outfit'); calculateTotalEstimate();">
+              <span>의상 추가</span>
+            </label>
+          </div>
+
+          <div class="option-detail-box" id="box_expression">
+            <div class="option-detail-header">
+              <label class="option-detail-title">
+                <input type="checkbox" id="sub_expression_check" onchange="syncOption('expression'); calculateTotalEstimate();"> 표정 추가 5,000원 (개당)
+              </label>
+              <div class="quantity-control">
+                <button type="button" class="qty-btn" onclick="changeQty('expression', -1); calculateTotalEstimate();">-</button>
+                <input type="text" id="qty_expression" class="qty-input" value="1" readonly>
+                <button type="button" class="qty-btn" onclick="changeQty('expression', 1); calculateTotalEstimate();">+</button>
+              </div>
+            </div>
+            <input type="text" id="desc_expression" class="form-control" placeholder="추가할 표정 내용을 적어주세요 (예: 윙크, 찌그러진 표정)">
+          </div>
+
+          <div class="option-detail-box" id="box_prop">
+            <div class="option-detail-header">
+              <label class="option-detail-title">
+                <input type="checkbox" id="sub_prop_check" onchange="syncOption('prop'); calculateTotalEstimate();"> 소품 추가 5,000원 (개당)
+              </label>
+              <div class="quantity-control">
+                <button type="button" class="qty-btn" onclick="changeQty('prop', -1); calculateTotalEstimate();">-</button>
+                <input type="text" id="qty_prop" class="qty-input" value="1" readonly>
+                <button type="button" class="qty-btn" onclick="changeQty('prop', 1); calculateTotalEstimate();">+</button>
+              </div>
+            </div>
+            <input type="text" id="desc_prop" class="form-control" placeholder="추가할 소품 내용을 적어주세요 (예: 인형, 마이크)">
+          </div>
+
+          <div class="option-detail-box" id="box_hair">
+            <div class="option-detail-header">
+              <label class="option-detail-title">
+                <input type="checkbox" id="sub_hair_check" onchange="syncOption('hair'); calculateTotalEstimate();"> 헤어 추가 30,000원 (개당)
+              </label>
+              <div class="quantity-control">
+                <button type="button" class="qty-btn" onclick="changeQty('hair', -1); calculateTotalEstimate();">-</button>
+                <input type="text" id="qty_hair" class="qty-input" value="1" readonly>
+                <button type="button" class="qty-btn" onclick="changeQty('hair', 1); calculateTotalEstimate();">+</button>
+              </div>
+            </div>
+            <input type="text" id="desc_hair" class="form-control" placeholder="추가할 헤어 스타일 내용을 적어주세요">
+          </div>
+
+          <div class="option-detail-box" id="box_outfit">
+            <div class="option-detail-header">
+              <label class="option-detail-title">
+                <input type="checkbox" id="sub_outfit_check" onchange="syncOption('outfit'); calculateTotalEstimate();"> 의상 추가 20,000원 (개당)
+              </label>
+              <div class="quantity-control">
+                <button type="button" class="qty-btn" onclick="changeQty('outfit', -1); calculateTotalEstimate();">-</button>
+                <input type="text" id="qty_outfit" class="qty-input" value="1" readonly>
+                <button type="button" class="qty-btn" onclick="changeQty('outfit', 1); calculateTotalEstimate();">+</button>
+              </div>
+            </div>
+            <input type="text" id="desc_outfit" class="form-control" placeholder="추가할 의상 디자인 내용을 적어주세요">
+          </div>
+
+          <div class="option-card" id="copyrightWrapper" style="margin-top: 10px;">
+            <label style="display: flex; align-items: center; gap: 11px; width: 100%; cursor: pointer;">
+              <input type="checkbox" id="opt_copyright" onchange="calculateTotalEstimate()">
+              <span id="copyrightLabelText">저작권 구매 (상업용 전용: 최종 견적가 2배)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="concept">캐릭터 컨셉 <span class="required-star">*</span></label>
+          <textarea id="concept" name="concept" class="form-control" placeholder="이미지는 문의 작성시 첨부해주세요." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="additional">추가 파츠 및 요청사항</label>
+          <textarea id="additional" name="additional" class="form-control" placeholder="내용 작성"></textarea>
+        </div>
+
+        <div class="estimate-box">
+          <div class="estimate-title">예상 총 견적 금액</div>
+          <div class="estimate-amount" id="totalEstimateText">0원</div>
+        </div>
       </form>
     </div>
 
-    <div class="btn_qna" onclick="handleQnaClick()">문의하기</div>
+    <div class="btn_qna" onclick="handleQnaClick()">신청양식 복사하기</div>
+    <div class="btn_form" onclick="openArtmugQna()">문의하기</div>
   </div>
+     
 
   <div class="img-modal-overlay" id="imgModal" onclick="closeImageModal()">
     <img src="" id="modalImg" class="img-modal-content" alt="샘플 원본 보기">
@@ -290,18 +446,87 @@
       { name: '포즈', url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfRpUU5EISjVKuVP-p0x1tTmiCTek-1Uhr3q18Y4tEVotijnrEHbXJENLPcBQBqtKvVU0r92oJNjuL/pub?gid=1561439969&single=true&output=csv' }
     ];
 
-function calculateTotalEstimate() {
-      const usageSelect = document.getElementById('usage');
-      const selectedUsage = usageSelect.value;
-      let basePrice = selectedUsage === '방송용' ? 120000 : (selectedUsage === '상업용' ? 360000 : 70000);
+    function syncOption(type) {
+      const topCheck = document.getElementById(`opt_${type}_check`);
+      const subCheck = document.getElementById(`sub_${type}_check`);
+      const box = document.getElementById(`box_${type}`);
+
+      if (event && event.target === topCheck) {
+        if (subCheck) subCheck.checked = topCheck.checked;
+      } else if (event && event.target === subCheck) {
+        if (topCheck) topCheck.checked = subCheck.checked;
+      }
+
+      const isChecked = topCheck.checked || (subCheck && subCheck.checked);
+      if (topCheck) topCheck.checked = isChecked;
+      if (subCheck) subCheck.checked = isChecked;
+
+      if (isChecked) {
+        box.classList.add('active');
+      } else {
+        box.classList.remove('active');
+      }
+    }
+
+    function changeQty(type, delta) {
+      const qtyInput = document.getElementById(`qty_${type}`);
+      let currentVal = parseInt(qtyInput.value) || 1;
+      currentVal += delta;
+      if (currentVal < 1) currentVal = 1;
+      qtyInput.value = currentVal;
+    }
+
+    function toggleScheduleDate() {
+      const select = document.getElementById('portfolio_release');
+      const dateBox = document.getElementById('schedule_date_box');
+      if (select.value.includes('지정일 공개')) {
+        dateBox.style.display = 'block';
+      } else {
+        dateBox.style.display = 'none';
+      }
+    }
+
+    function calculateTotalEstimate() {
+      const selectedUsageElem = document.querySelector('input[name="usage"]:checked');
+      const selectedUsage = selectedUsageElem ? selectedUsageElem.value : '비상업용';
+      let basePrice = selectedUsageElem ? parseInt(selectedUsageElem.getAttribute('data-price')) : 70000;
+
       let addPrice = 0;
-      if (document.getElementById('opt_expression').checked) addPrice += 5000;
-      if (document.getElementById('opt_hair').checked) addPrice += 30000;
-      if (document.getElementById('opt_clothes').checked) addPrice += 50000;
+
+      // 리뷰 이벤트 할인
+      if (document.getElementById('review_event').checked) {
+        addPrice -= 10000;
+      }
+
+      // 지정일 공개
+      const portfolioRelease = document.getElementById('portfolio_release').value;
+      if (portfolioRelease.includes('지정일 공개')) addPrice += 10000;
+
+      // 수량 옵션 계산
+      if (document.getElementById('opt_expression_check').checked) {
+        const qty = parseInt(document.getElementById('qty_expression').value) || 1;
+        addPrice += 5000 * qty;
+      }
+      if (document.getElementById('opt_prop_check').checked) {
+        const qty = parseInt(document.getElementById('qty_prop').value) || 1;
+        addPrice += 5000 * qty;
+      }
+      if (document.getElementById('opt_hair_check').checked) {
+        const qty = parseInt(document.getElementById('qty_hair').value) || 1;
+        addPrice += 30000 * qty;
+      }
+      if (document.getElementById('opt_outfit_check').checked) {
+        const qty = parseInt(document.getElementById('qty_outfit').value) || 1;
+        addPrice += 20000 * qty;
+      }
+
       let subTotal = basePrice + addPrice;
+
+      // 저작권 구매 조작
       const copyrightCheckbox = document.getElementById('opt_copyright');
       const copyrightWrapper = document.getElementById('copyrightWrapper');
       const copyrightLabelText = document.getElementById('copyrightLabelText');
+
       if (selectedUsage !== '상업용') {
         copyrightCheckbox.checked = false;
         copyrightCheckbox.disabled = true;
@@ -312,39 +537,21 @@ function calculateTotalEstimate() {
         copyrightWrapper.style.opacity = '1';
         copyrightLabelText.style.color = 'var(--text-main)';
       }
+
       let rawTotal = (selectedUsage === '상업용' && copyrightCheckbox.checked) ? subTotal * 2 : subTotal;
-      
-      // 모든 최종 금액에 사이트 추가 수수료 10% 반영
+      if (rawTotal < 0) rawTotal = 0;
+
+      // 사이트 수수료 10% 추가
       let finalTotal = Math.round(rawTotal * 1.1);
 
       document.getElementById('totalEstimateText').textContent = finalTotal.toLocaleString() + '원 (사이트 수수료 10% 포함)';
       return finalTotal;
     }
 
-    const container = document.getElementById('sliderContainer');
-    function scrollSlider(direction) {
-      const slideItem = container.querySelector('.slide-item');
-      if (!slideItem) return;
-      container.scrollBy({ left: direction * (slideItem.clientWidth + 21), behavior: 'smooth' });
-    }
-
-    function parseCSV(text) {
-      return text.trim().split(/\r?\n/).map(line => line.split(',').map(cell => cell.trim().replace(/^"(.*)"$/, '$1')));
-    }
-
-    function convertDropboxUrl(url) {
-      if (!url) return '';
-      let directUrl = url.trim();
-      if (directUrl.includes('dropbox.com')) {
-        directUrl = directUrl.replace('dl=0', 'raw=1').replace('dl=1', 'raw=1');
-        if (!directUrl.includes('raw=1')) directUrl += (directUrl.includes('?') ? '&' : '?') + 'raw=1';
-      }
-      return directUrl;
-    }
-
-function handleQnaClick() {
+    function handleQnaClick() {
       const nickname = document.getElementById('nickname').value;
-      const usage = document.getElementById('usage').value;
+      const selectedUsageElem = document.querySelector('input[name="usage"]:checked');
+      const usage = selectedUsageElem ? selectedUsageElem.value : '';
       const concept = document.getElementById('concept').value;
       const additional = document.getElementById('additional').value;
 
@@ -354,28 +561,62 @@ function handleQnaClick() {
         return;
       }
 
-      let optionsText = [];
-      if (document.getElementById('opt_expression').checked) optionsText.push('추가 표정 (+5,000원)');
-      if (document.getElementById('opt_hair').checked) optionsText.push('추가 헤어 (+30,000원)');
-      if (document.getElementById('opt_clothes').checked) optionsText.push('추가 의상 (+50,000원)');
-      if (document.getElementById('opt_copyright').checked) optionsText.push('저작권 구매 (최종 견적가 2배 적용)');
+      let optionsList = [];
+      
+      // 리뷰 이벤트 참여 O / X 표기
+      const reviewChecked = document.getElementById('review_event').checked;
+      optionsList.push(`· 리뷰 이벤트 참여: ${reviewChecked ? 'O' : 'X'}`);
 
-      const optionsStr = optionsText.length > 0 ? optionsText.join(', ') : '없음';
+      const portfolioRelease = document.getElementById('portfolio_release').value;
+      if (portfolioRelease.includes('지정일 공개')) {
+        const releaseDate = document.getElementById('release_date').value;
+        optionsList.push(`· 지정일 공개 [일자: ${releaseDate || '미지정'}]`);
+      }
+
+      if (document.getElementById('opt_expression_check').checked) {
+        const qty = document.getElementById('qty_expression').value;
+        const desc = document.getElementById('desc_expression').value;
+        optionsList.push(`· 표정 추가 : ${qty}개${desc ? `\n       ${desc}` : ''}`);
+      }
+      if (document.getElementById('opt_prop_check').checked) {
+        const qty = document.getElementById('qty_prop').value;
+        const desc = document.getElementById('desc_prop').value;
+        optionsList.push(`· 소품 추가 : ${qty}개${desc ? `\n       ${desc}` : ''}`);
+      }
+      if (document.getElementById('opt_hair_check').checked) {
+        const qty = document.getElementById('qty_hair').value;
+        const desc = document.getElementById('desc_hair').value;
+        optionsList.push(`· 헤어 추가 : ${qty}개${desc ? `\n       ${desc}` : ''}`);
+      }
+      if (document.getElementById('opt_outfit_check').checked) {
+        const qty = document.getElementById('qty_outfit').value;
+        const desc = document.getElementById('desc_outfit').value;
+        optionsList.push(`· 의상 추가 : ${qty}개${desc ? `\n       ${desc}` : ''}`);
+      }
+      if (document.getElementById('opt_copyright').checked) {
+        optionsList.push('· 저작권 구매');
+      }
+
+      const optionsStr = optionsList.join('\n');
       const finalEstimate = document.getElementById('totalEstimateText').textContent;
 
       const formattedText = 
 `[SD 고정틀 신청 양식]
-- 닉네임 (모델명): ${nickname}
-- 사용 용도: ${usage}
-- 선택된 추가 옵션: ${optionsStr}
-- 예상 총 견적: ${finalEstimate}
-- 캐릭터 컨셉:
+
+· 닉네임 (모델명): ${nickname}
+· 사용 용도: ${usage}
+
+${optionsStr}
+
+· 캐릭터 컨셉:
 ${concept}
 
-- 추가 파츠 및 요청사항:
-${additional}`;
+· 추가 파츠 및 요청사항:
+${additional}
 
-      // 클립보드 복사
+· 예상 총 견적:
+  ${finalEstimate}`;
+
       const textarea = document.createElement('textarea');
       textarea.value = formattedText;
       textarea.style.position = 'fixed';
@@ -400,6 +641,27 @@ ${additional}`;
         document.body.removeChild(textarea);
         alert('브라우저가 복사 기능을 차단했습니다.');
       }
+    }
+
+    const container = document.getElementById('sliderContainer');
+    function scrollSlider(direction) {
+      const slideItem = container.querySelector('.slide-item');
+      if (!slideItem) return;
+      container.scrollBy({ left: direction * (slideItem.clientWidth + 21), behavior: 'smooth' });
+    }
+
+    function parseCSV(text) {
+      return text.trim().split(/\r?\n/).map(line => line.split(',').map(cell => cell.trim().replace(/^"(.*)"$/, '$1')));
+    }
+
+    function convertDropboxUrl(url) {
+      if (!url) return '';
+      let directUrl = url.trim();
+      if (directUrl.includes('dropbox.com')) {
+        directUrl = directUrl.replace('dl=0', 'raw=1').replace('dl=1', 'raw=1');
+        if (!directUrl.includes('raw=1')) directUrl += (directUrl.includes('?') ? '&' : '?') + 'raw=1';
+      }
+      return directUrl;
     }
 
     async function loadPortfolioFromSheet() {
@@ -472,11 +734,22 @@ ${additional}`;
       document.getElementById('imgModal').classList.remove('active');
     }
 
-    // 문서 높이 실시간 전송 함수 추가 (페이지 로딩 문제 완전 해결)
     function sendHeight() {
       const h = document.body.scrollHeight;
       window.parent.postMessage({ height: h }, '*');
     }
+
+function openArtmugQna() {
+  if (window.parent && window.parent.pLightBox) {
+    window.parent.pLightBox.show('php/qna_write.php?number=60682', 'iframe_w', '1080', '500', '문의하기', '0');
+    if (window.parent.qnaAlert) {
+      window.parent.qnaAlert();
+    }
+  } else {
+    // 테스트 환경 등 부모 창의 pLightBox를 찾을 수 없을 때의 안내
+    alert('아트머그 문의 창을 열 수 없습니다.');
+  }
+}
 
     window.addEventListener('DOMContentLoaded', () => {
       loadPortfolioFromSheet();
