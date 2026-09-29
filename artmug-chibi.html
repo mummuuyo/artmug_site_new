@@ -738,17 +738,12 @@ ${additional}
       const h = document.body.scrollHeight;
       window.parent.postMessage({ height: h }, '*');
     }
-
 function openArtmugQna() {
-  if (window.parent && window.parent.pLightBox) {
-    window.parent.pLightBox.show('php/qna_write.php?number=60682', 'iframe_w', '1080', '500', '문의하기', '0');
-    if (window.parent.qnaAlert) {
-      window.parent.qnaAlert();
-    }
-  } else {
-    // 테스트 환경 등 부모 창의 pLightBox를 찾을 수 없을 때의 안내
-    alert('아트머그 문의 창을 열 수 없습니다.');
-  }
+  // 양식 내용 복사 실행
+  handleQnaClick();
+
+  // 부모 창(아트머그)으로 문의하기 창 열기 메시지 전송 (보안 에러 방지)
+  window.parent.postMessage({ type: 'open_qna' }, '*');
 }
 
     window.addEventListener('DOMContentLoaded', () => {
